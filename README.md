@@ -5,11 +5,13 @@ Backend, üyelik ve giriş gerektirmeyen; web, iOS ve Android için hazırlanmı
 ## Özellikler
 
 - Pratik ve süreli sınav modları
-- 60 özgün metin sorusu ve 2020-2026 çalışma arşivi
+- 60 konu sorusu ve 2020-2026 için yıl başına 100 soruluk çalışma arşivi
+- Toplam 700 özgün, açıklamalı geçmiş sınav çalışma sorusu
 - 13 ayrı SGS sınavı ve toplam 1.690 kaynak soru
 - Tek sınav, karma SGS, Son 3 Yıl, Son 5 Yıl ve Tüm Yıllar modları
 - Ders, konu, yanlış cevap ve favori filtreleri
 - Görsel sorularda kompakt A/B/C/D/E cevap düğmeleri
+- Yanlış cevap listesini tek işlemle temizleme
 - Sonraki soruya geçene kadar cevabı değiştirebilme
 - Soru ve metin seçeneklerini karıştırma
 - Soru sayısına göre otomatik artan sınav süresi
@@ -76,6 +78,13 @@ Metin soru havuzu [`src/data/questionBank.js`](./src/data/questionBank.js) taraf
 - [`src/data/supplementalQuestions.json`](./src/data/supplementalQuestions.json)
 - [`src/data/pastExamQuestions.json`](./src/data/pastExamQuestions.json)
 
+Yıllara göre 700 soruluk veri, 100 özgün çekirdek sorudan deterministik çalışma
+varyantları oluşturan aşağıdaki komutla yeniden üretilebilir:
+
+```bash
+node scripts/generate_past_exam_questions.mjs
+```
+
 Yeni paketler ayrı JSON dosyalarında tutulup `questionBank.js` içine eklenebilir. Her kaydın benzersiz ve kalıcı bir `id` alanı bulunmalıdır:
 
 ```json
@@ -101,6 +110,8 @@ Yeni paketler ayrı JSON dosyalarında tutulup `questionBank.js` içine eklenebi
 - Yüksek çözünürlüklü soru görselleri: `public/sgs/questions/`
 
 Kaynak PDF'de kırmızı işaretlenen seçenek içe aktarma sırasında doğru cevap olarak kaydedilir. Kullanıcıya gösterilen görselde kırmızı işaret siyaha dönüştürülür; cevaplar görselin altında kompakt düğmelerle sunulur.
+Formül ve kesirlerin üst kısmının kesilmemesi için soru görselleri güvenli üst
+boşlukla kırpılır.
 
 Yeni SGS PDF'lerini içe aktarmak için:
 
@@ -156,6 +167,20 @@ Bozuk veya eski kayıtlar güvenli varsayılanlara normalize edilir. Ayarlardaki
 ## Reklam Yerleri
 
 [`src/components/ads/AdSlot.jsx`](./src/components/ads/AdSlot.jsx), Capacitor platform algılamasına göre web için AdSense ve mobil için AdMob yer tutucusu gösterir. Bu sürüm reklam SDK'sı yüklemez. Canlı yayın öncesinde rıza akışı, test reklam kimlikleri, mağaza veri beyanları ve gizlilik politikası tamamlanmalıdır.
+
+## SEO ve Deploy
+
+Üretim alan adı `https://smmmsorubankasi.com` olarak yapılandırılmıştır.
+
+- Route bazlı başlık, açıklama, canonical ve robots etiketi
+- Open Graph, Twitter Card ve JSON-LD
+- `public/robots.txt` ve `public/sitemap.xml`
+- Web uygulama manifesti, ikonlar ve sosyal paylaşım görseli
+- Vercel (`vercel.json`), Netlify (`public/_redirects`) ve Apache
+  (`public/.htaccess`) SPA yönlendirme ayarları
+
+Kullanıcıya özel `/solve`, `/wrong`, `/favorites`, `/statistics` ve `/settings`
+sayfaları arama motorlarına `noindex` olarak sunulur.
 
 ## Resmî Referanslar
 

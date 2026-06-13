@@ -15,7 +15,7 @@ export function PastExamsPage() {
       <PageHeader
         eyebrow="Çıkmış sorular"
         title="Yıllara göre çıkmış sorular"
-        description="2020-2026 dönemlerinden esinlenen özgün çalışma sorularını yıl seçerek veya karma modda çöz."
+        description="2020-2026 dönemlerinin her biri için 100 özgün çalışma sorusunu yıl seçerek veya toplam 700 soruluk karma modda çöz."
       />
 
       <Link

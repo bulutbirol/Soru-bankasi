@@ -42,11 +42,12 @@ export function AboutPage() {
         <section>
           <h2 className="font-display text-2xl font-bold">Soru içeriği</h2>
           <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-400">
-            Paket içindeki örnek sorular uygulama geliştirme amacıyla özgün olarak hazırlanmıştır. Resmî sınav sorusu değildir
-            ve herhangi bir kurumla bağlantı veya başarı garantisi ifade etmez.
+            Yıllara göre sunulan metin çalışma soruları TESMER konu dağılımı dikkate alınarak özgün hazırlanmıştır.
+            SGS bölümündeki görsel sorular ise kullanıcı tarafından sağlanan ve resmî arşivden doğrulanan sınav
+            kitapçıklarından dönüştürülmüştür. Uygulama herhangi bir kurumla bağlantı veya başarı garantisi ifade etmez.
           </p>
         </section>
-        <p className="text-xs font-bold text-slate-400">Son güncelleme: 12 Haziran 2026</p>
+        <p className="text-xs font-bold text-slate-400">Son güncelleme: 13 Haziran 2026</p>
       </article>
     </div>
   )

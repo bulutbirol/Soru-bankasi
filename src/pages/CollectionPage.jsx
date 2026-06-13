@@ -1,4 +1,4 @@
-import { Heart, Play, XCircle } from 'lucide-react'
+import { Heart, Play, Trash2, XCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { EmptyState } from '../components/EmptyState'
 import { PageHeader } from '../components/PageHeader'
@@ -8,11 +8,16 @@ import sgsExamQuestions from '../data/sgsExamQuestions.json'
 import { useProgress } from '../hooks/useProgress'
 
 export function CollectionPage({ type }) {
-  const { progress, toggleFavorite } = useProgress()
+  const { progress, toggleFavorite, clearWrongQuestions } = useProgress()
   const isWrong = type === 'wrong'
   const ids = isWrong ? progress.wrongQuestionIds : progress.favoriteQuestionIds
   const items = [...questions, ...pastExamQuestions, ...sgsExamQuestions].filter((question) => ids.includes(question.id))
   const title = isWrong ? 'Yanlış cevapların' : 'Favori soruların'
+  const handleClearWrongQuestions = () => {
+    if (window.confirm('Yanlışlar listesindeki tüm sorular temizlensin mi?')) {
+      clearWrongQuestions()
+    }
+  }
 
   if (!items.length) {
     return (
@@ -30,9 +35,20 @@ export function CollectionPage({ type }) {
         title={title}
         description={`${items.length} soru cihazında kayıtlı.`}
         action={
-          <Link to={`/solve?mode=practice&collection=${type}&limit=${items.length}`} className="btn-primary">
-            <Play size={18} fill="currentColor" /> Tümünü çöz
-          </Link>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            {isWrong && (
+              <button
+                type="button"
+                onClick={handleClearWrongQuestions}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-coral/30 px-5 py-3 font-bold text-coral transition hover:bg-coral/10"
+              >
+                <Trash2 size={18} /> Yanlışları temizle
+              </button>
+            )}
+            <Link to={`/solve?mode=practice&collection=${type}&limit=${items.length}`} className="btn-primary">
+              <Play size={18} fill="currentColor" /> Tümünü çöz
+            </Link>
+          </div>
         }
       />
       <div className="space-y-3">

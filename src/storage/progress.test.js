@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  clearWrongQuestions,
   createDefaultProgress,
   loadProgress,
   recordAnswer,
@@ -34,5 +35,20 @@ describe('progress storage', () => {
     const next = toggleFavorite(createDefaultProgress(), 'q9')
     saveProgress(next)
     expect(loadProgress().favoriteQuestionIds).toEqual(['q9'])
+  })
+
+  it('clears only the wrong-answer collection', () => {
+    const progress = {
+      ...createDefaultProgress(),
+      wrongQuestionIds: ['q1', 'q2'],
+      favoriteQuestionIds: ['q2'],
+      totals: { answered: 4, correct: 2, wrong: 2, exams: 1 },
+    }
+
+    expect(clearWrongQuestions(progress)).toMatchObject({
+      wrongQuestionIds: [],
+      favoriteQuestionIds: ['q2'],
+      totals: { answered: 4, correct: 2, wrong: 2, exams: 1 },
+    })
   })
 })

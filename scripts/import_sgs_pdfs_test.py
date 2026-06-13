@@ -16,6 +16,12 @@ class ImportSgsPdfsTest(unittest.TestCase):
             850,
         )
 
+    def test_question_crop_keeps_formula_content_above_the_number_line(self):
+        self.assertLessEqual(
+            MODULE.question_crop_top(120),
+            108,
+        )
+
     def test_detects_exactly_one_red_option(self):
         options = [
             {"text": "A seçeneği", "is_red": False},

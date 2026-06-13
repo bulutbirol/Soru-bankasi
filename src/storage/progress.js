@@ -109,6 +109,13 @@ export function toggleFavorite(progress, questionId) {
   })
 }
 
+export function clearWrongQuestions(progress) {
+  return normalizeProgress({
+    ...progress,
+    wrongQuestionIds: [],
+  })
+}
+
 export function updateSettings(progress, settings) {
   return normalizeProgress({
     ...progress,

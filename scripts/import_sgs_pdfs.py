@@ -21,6 +21,7 @@ QUESTION_COUNT = 130
 RENDER_SCALE = 3.4
 WEBP_QUALITY = 88
 COLUMN_WIDTH = 265
+QUESTION_TOP_PADDING = 14
 MONTHS = {
     "OCAK": 1,
     "ŞUBAT": 2,
@@ -291,6 +292,10 @@ def question_image_width(scale: float) -> int:
     return round(COLUMN_WIDTH * scale)
 
 
+def question_crop_top(question_top: float) -> float:
+    return max(52, question_top - QUESTION_TOP_PADDING)
+
+
 def render_question_images(
     document: fitz.Document,
     locations: list[dict],
@@ -311,7 +316,7 @@ def render_question_images(
             left, right = (25, 290) if location["column"] == 0 else (305, 570)
             box = (
                 round(left * scale),
-                round(max(52, location["top"] - 3) * scale),
+                round(question_crop_top(location["top"]) * scale),
                 round(right * scale),
                 round(min(790, location["bottom"]) * scale),
             )

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import App from './App'
 
@@ -23,16 +24,16 @@ describe('SMMM question bank', () => {
     const user = userEvent.setup()
     renderApp('/solve?mode=practice&category=Muhasebe&limit=1')
 
-    await user.click(screen.getAllByRole('button', { name: /^[A-E]\./ })[0])
+    await user.click((await screen.findAllByRole('button', { name: /^[A-E]\./ }))[0])
 
     expect(screen.getByText('Cevap açıklaması')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Testi bitir/i })).toBeInTheDocument()
   })
 
-  it('opens an imported SGS question with its source image', () => {
+  it('opens an imported SGS question with its source image', async () => {
     renderApp('/solve?source=sgs&examIds=sgs-2025-11-22&mode=practice&limit=1')
 
-    expect(screen.getByRole('img', { name: /22 Kasım 2025 SGS - Soru/i })).toBeInTheDocument()
+    expect(await screen.findByRole('img', { name: /22 Kasım 2025 SGS - Soru/i })).toBeInTheDocument()
     expect(screen.getAllByRole('button', { name: /^[A-E]$/ })).toHaveLength(5)
     expect(screen.queryByText('A seçeneği')).not.toBeInTheDocument()
   })
@@ -40,8 +41,8 @@ describe('SMMM question bank', () => {
   it('lets the user change an answer before moving to the next question', async () => {
     const user = userEvent.setup()
     renderApp('/solve?source=sgs&examIds=sgs-2025-11-22&mode=practice&limit=1')
-    const optionA = screen.getByRole('button', { name: 'A' })
-    const optionB = screen.getByRole('button', { name: 'B' })
+    const optionA = await screen.findByRole('button', { name: 'A' })
+    const optionB = await screen.findByRole('button', { name: 'B' })
 
     await user.click(optionA)
     await user.click(optionB)
@@ -50,10 +51,10 @@ describe('SMMM question bank', () => {
     expect(optionB).toHaveAttribute('aria-pressed', 'true')
   })
 
-  it('scales timed sessions to the selected question count', () => {
+  it('scales timed sessions to the selected question count', async () => {
     renderApp('/solve?mode=exam&category=Muhasebe&limit=10')
 
-    expect(screen.getByText('13:00')).toBeInTheDocument()
+    expect(await screen.findByText('13:00')).toBeInTheDocument()
   })
 
   it('summarizes the complete SGS archive from its metadata', () => {
@@ -62,10 +63,52 @@ describe('SMMM question bank', () => {
     expect(screen.getByText(/2022 ve 2026 dönemlerindeki 13 sınavı/i)).toBeInTheDocument()
   })
 
-  it('shows the full year range on the SGS archive page', () => {
+  it('shows the full year range on the SGS archive page', async () => {
     renderApp('/sgs-exams')
 
-    expect(screen.getByText(/2022-2026 sınavlarından/i)).toBeInTheDocument()
+    expect(await screen.findByText(/2022-2026 sınavlarından/i)).toBeInTheDocument()
+  })
+
+  it('clears the wrong-answer list after confirmation', async () => {
+    const user = userEvent.setup()
+    localStorage.setItem('smmm-progress-v1', JSON.stringify({
+      version: 1,
+      wrongQuestionIds: ['smmm-001'],
+      favoriteQuestionIds: ['smmm-002'],
+      totals: { answered: 2, correct: 1, wrong: 1, exams: 0 },
+    }))
+    vi.spyOn(window, 'confirm').mockReturnValue(true)
+
+    renderApp('/wrong')
+    await user.click(await screen.findByRole('button', { name: /Yanlışları temizle/i }))
+
+    expect(screen.getByText(/Yanlış listen temiz/i)).toBeInTheDocument()
+    const stored = JSON.parse(localStorage.getItem('smmm-progress-v1'))
+    expect(stored.wrongQuestionIds).toEqual([])
+    expect(stored.favoriteQuestionIds).toEqual(['smmm-002'])
+  })
+
+  it('sets canonical metadata for public routes', () => {
+    renderApp('/past-exams/2026')
+
+    expect(document.title).toMatch(/2026 Çıkmış Soruları/)
+    expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://smmmsorubankasi.com/past-exams/2026',
+    )
+    expect(document.querySelector('meta[name="robots"]')).toHaveAttribute(
+      'content',
+      'index, follow',
+    )
+  })
+
+  it('prevents indexing user-specific routes', () => {
+    renderApp('/wrong')
+
+    expect(document.querySelector('meta[name="robots"]')).toHaveAttribute(
+      'content',
+      'noindex, nofollow',
+    )
   })
 })
 
@@ -94,8 +137,8 @@ describe.each([
   ['/sgs-exams/mixed', /Karma SGS çalışması/i],
   ['/olmayan-sayfa', /Bu sayfa bulunamadı/i],
 ])('route %s', (route, expectedText) => {
-  it('renders without falling through to a broken screen', () => {
+  it('renders without falling through to a broken screen', async () => {
     renderApp(route)
-    expect(screen.getByText(expectedText)).toBeInTheDocument()
+    expect(await screen.findByText(expectedText)).toBeInTheDocument()
   })
 })

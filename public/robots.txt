@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /solve
+Disallow: /wrong
+Disallow: /favorites
+Disallow: /statistics
+Disallow: /settings
+
+Sitemap: https://smmmsorubankasi.com/sitemap.xml

@@ -68,7 +68,7 @@ export function HomePage() {
           <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-coral">Yeni çalışma alanı</p>
           <h2 className="mt-1 font-display text-2xl font-bold">Çıkmış Sorular</h2>
           <p className="mt-2 max-w-lg text-sm leading-6 text-slate-600 dark:text-slate-400">
-            2020-2026 yıllarını tek tek incele veya farklı dönemleri karma bir oturumda çöz.
+            2020-2026 yıllarındaki her biri 100 soruluk setleri tek tek incele veya toplam 700 soruyu karma oturumda çöz.
           </p>
           <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold">
             Yılları keşfet <ArrowRight className="transition group-hover:translate-x-1" size={16} />

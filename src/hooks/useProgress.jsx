@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import {
   clearProgress,
+  clearWrongQuestions,
   loadProgress,
   recordAnswer,
   recordSession,
@@ -29,6 +30,7 @@ export function ProgressProvider({ children }) {
       answer: (payload) => setProgress((current) => recordAnswer(current, payload)),
       finishSession: (payload) => setProgress((current) => recordSession(current, payload)),
       toggleFavorite: (id) => setProgress((current) => toggleFavorite(current, id)),
+      clearWrongQuestions: () => setProgress((current) => clearWrongQuestions(current)),
       updateSettings: (settings) => setProgress((current) => updateSettings(current, settings)),
       reset: () => setProgress(clearProgress()),
     }),
