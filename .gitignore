@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.vite/
+coverage/
+.cache/
+__pycache__/
+*.py[cod]
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+android/.gradle/
+android/local.properties
+ios/App/Pods/
+ios/App/App/public/

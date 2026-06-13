@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-family: 'Manrope', sans-serif;
+  background: #f5f0e6;
+  color: #0e2431;
+  font-synthesis: none;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(242, 169, 59, 0.14), transparent 34rem),
+    radial-gradient(circle at 100% 30%, rgba(134, 215, 180, 0.12), transparent 30rem),
+    #f5f0e6;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(242, 169, 59, 0.08), transparent 34rem),
+    radial-gradient(circle at 100% 30%, rgba(134, 215, 180, 0.08), transparent 30rem),
+    #091922;
+}
+
+button,
+a,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+  outline: 3px solid #f2a93b;
+  outline-offset: 3px;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-3xl border border-ink/10 bg-white/80 shadow-lift backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.06];
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-ink px-5 py-3 font-bold text-white transition hover:-translate-y-0.5 hover:bg-ink/90 dark:bg-amber dark:text-ink;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-ink/15 bg-white/70 px-5 py-3 font-bold transition hover:bg-white dark:border-white/15 dark:bg-white/[0.06] dark:hover:bg-white/10;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter {
+    animation: page-enter 420ms ease both;
+  }
+
+  @keyframes page-enter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

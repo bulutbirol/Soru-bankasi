@@ -1,0 +1,109 @@
+{
+  "exams": [
+    {
+      "id": "sgs-2026-04-18",
+      "year": 2026,
+      "date": "18 Nisan 2026",
+      "sourceFile": "18_Nisan_2026-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "c323cee58f1ecd7f076cbe38eb815178ec28d6bb8b0b1ad7b7f1cc7fff8b8330",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2025-11-22",
+      "year": 2025,
+      "date": "22 Kasım 2025",
+      "sourceFile": "22_Kasim_2025-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "6e63349f45c1436056795c8196f7696487b6f76fc1340b0806715dfa5c817dd9",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2025-07-26",
+      "year": 2025,
+      "date": "26 Temmuz 2025",
+      "sourceFile": "26_Temmuz_2025-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "35d93ce3f5d1bedb1e5b3388f29e6e5f0d8b72c1e6cdd6efdd0b572e3d0f38df",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2025-04-05",
+      "year": 2025,
+      "date": "05 Nisan 2025",
+      "sourceFile": "05_Nisan_2025-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "66a52e2c0ed1773938975a69c131a78bd84ca115255996cd34a836025e766b6b",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2024-10-26",
+      "year": 2024,
+      "date": "26 Ekim 2024",
+      "sourceFile": "26 Ekim 2024-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "2f0b21d7893a11e74eee06d19a87e9648573cc88325c6c3192f6130c7f968d52",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2024-07-13",
+      "year": 2024,
+      "date": "13 Temmuz 2024",
+      "sourceFile": "13 Temmuz 2024-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "55592e591bce776f7f1effed215fd55902341f6a4d3004e8f421e5afedb1563b",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2024-03-02",
+      "year": 2024,
+      "date": "02 Mart 2024",
+      "sourceFile": "02 Mart 2024-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "ba9347f103c3033d81f519894b487b3f1059c40a6b5701e53c80a11845dff0c0",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2023-11-18",
+      "year": 2023,
+      "date": "18 Kasım 2023",
+      "sourceFile": "18 Kasım-2023-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "e824b0f79004af4dac703ba05478b63b8c2b383f6c30a35873e8e3599edf6345",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2023-08-26",
+      "year": 2023,
+      "date": "26 Ağustos 2023",
+      "sourceFile": "26-Agustos-2023-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "3495134a9b8100cbec9c7e7f76622103f8396c8fcc08f90bd1ef2112c2f0cde0",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2023-04-29",
+      "year": 2023,
+      "date": "29 Nisan 2023",
+      "sourceFile": "29-Nisan-2023-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "089fe5166caae3c05d2fa02a3922433877631688abf60c03e8afa1441371abec",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2022-10-15",
+      "year": 2022,
+      "date": "15 Ekim 2022",
+      "sourceFile": "15-Ekim-2022-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "4e7574ae83aaeaa170b8f19222d120d239b48c784d3e184a0ca7bb32981c2e47",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2022-06-11",
+      "year": 2022,
+      "date": "11 Haziran 2022",
+      "sourceFile": "11-Haziran-2022-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "83fadc6e0ac43cab6726cad5d942979a0e4816d97c5dc1a98121631a91c38411",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2022-03-12",
+      "year": 2022,
+      "date": "12 Mart 2022",
+      "sourceFile": "12-Mart-2022-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "03aac76c9e18a67e1bde8bfce5e3324838dd7077e9915cfdbd216cefc4377614",
+      "questionCount": 130
+    }
+  ],
+  "duplicates": []
+}
