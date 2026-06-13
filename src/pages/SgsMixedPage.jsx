@@ -1,4 +1,4 @@
-import { Clock3, Layers3, Play } from 'lucide-react'
+import { Layers3, Play } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageHeader } from '../components/PageHeader'
@@ -20,11 +20,10 @@ export function SgsMixedPage() {
     [category, examIds, topic],
   )
 
-  const solveUrl = (mode) => {
+  const solveUrl = () => {
     const params = new URLSearchParams({
       source: 'sgs',
       examIds: examIds.join(','),
-      mode,
       limit: String(filtered.length),
     })
     if (category) params.set('category', category)
@@ -56,11 +55,8 @@ export function SgsMixedPage() {
           <p className="mt-1 text-sm text-slate-500">{sgsExamData.exams.length} sınav · {category || 'Tüm dersler'} · {topic || 'Tüm konular'}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Link to={solveUrl('practice')} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
-            <Play size={18} fill="currentColor" /> Pratik çöz
-          </Link>
-          <Link to={solveUrl('exam')} className={`btn-secondary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
-            <Clock3 size={18} /> Süreli çöz
+          <Link to={solveUrl()} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
+            <Play size={18} fill="currentColor" /> Soruları çöz
           </Link>
         </div>
       </div>

@@ -1,8 +1,9 @@
-import { ArrowRight, Award, CalendarRange, Clock3, Flame, GraduationCap, Layers3, Play, RotateCcw, Target } from 'lucide-react'
+import { ArrowRight, Award, CalendarRange, Flame, GraduationCap, Layers3, Play, RotateCcw, Target } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CategoryCard } from '../components/CategoryCard'
 import questions from '../data/questionBank'
 import qualificationData from '../data/qualificationExams.json'
+import qualificationQuestions from '../data/qualificationQuestions.json'
 import sgsExamData from '../data/sgsExams.json'
 import { useProgress } from '../hooks/useProgress'
 import { getCategorySummary } from '../utils/questions'
@@ -34,11 +35,8 @@ export function HomePage() {
             Üyelik yok, dikkat dağıtan akış yok. Konunu seç, özgün soruları çöz ve gelişimini yalnızca cihazında tut.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link to="/solve?mode=practice&limit=10" className="btn-primary bg-amber text-ink hover:bg-amber/90">
-              <Play size={18} fill="currentColor" /> Hızlı pratik
-            </Link>
-            <Link to="/solve?mode=exam&limit=20" className="btn-secondary border-white/20 bg-white/10 text-white hover:bg-white/15">
-              <Clock3 size={18} /> Süreli sınav
+            <Link to="/solve?limit=10" className="btn-primary bg-amber text-ink hover:bg-amber/90">
+              <Play size={18} fill="currentColor" /> Hızlı çalış
             </Link>
           </div>
         </div>
@@ -120,10 +118,10 @@ export function HomePage() {
               <Award size={24} />
             </span>
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-white/70">Soru ve cevap belgeleri</p>
+              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-white/70">Açıklamalı öğrenme alanı</p>
               <h2 className="mt-1 font-display text-2xl font-bold">SMMM Yeterlilik Sınavları</h2>
               <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-white/80">
-                Dönem ve ders bazında {qualificationDocumentCount} doğrulanmış Yeterlilik belgesine ulaş.
+                {qualificationDocumentCount} kaynak belgeye göre hazırlanmış {qualificationQuestions.length.toLocaleString('tr-TR')} özgün ve açıklamalı soruyu çöz.
               </p>
             </div>
           </div>

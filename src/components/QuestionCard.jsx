@@ -5,13 +5,12 @@ const letters = ['A', 'B', 'C', 'D', 'E']
 export function QuestionCard({
   question,
   selectedAnswer,
-  mode,
   favorite,
   onAnswer,
   onToggleFavorite,
 }) {
   const answered = selectedAnswer !== undefined
-  const reveal = mode === 'practice' && answered
+  const reveal = answered
   const imageChoices = Boolean(question.questionImage)
 
   return (
@@ -21,9 +20,11 @@ export function QuestionCard({
           <div className="mb-3 flex flex-wrap gap-2 text-xs font-bold">
             <span className="rounded-full bg-ink px-3 py-1 text-white dark:bg-white dark:text-ink">{question.category}</span>
             <span className="rounded-full bg-amber/20 px-3 py-1 text-amber-800 dark:text-amber">{question.topic}</span>
-            {question.sourceType === 'past_exam' && (
+            {(question.sourceType === 'past_exam' || question.sourceType === 'qualification_original') && (
               <span className="rounded-full bg-mint/20 px-3 py-1 text-emerald-800 dark:text-mint">
-                {question.exam === 'SGS' ? `SGS · ${question.period}` : `${question.year} · ${question.period}`}
+                {question.sourceType === 'qualification_original'
+                  ? `${question.year} · ${question.period}`
+                  : question.exam === 'SGS' ? `SGS · ${question.period}` : `${question.year} · ${question.period}`}
               </span>
             )}
           </div>

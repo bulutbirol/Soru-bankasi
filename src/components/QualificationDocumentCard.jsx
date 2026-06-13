@@ -12,7 +12,7 @@ export function QualificationDocumentCard({ document }) {
       <span className="min-w-0 flex-1">
         <strong className="block font-display text-lg">{document.lesson}</strong>
         <span className="mt-1 block text-xs font-semibold text-slate-500">
-          {document.available ? 'Kaynak PDF doğrulandı' : 'Kaynak bağlantısı kullanılamıyor'}
+          {document.available ? `${document.questionCount} açıklamalı soru · Kaynak PDF` : 'Kaynak bağlantısı kullanılamıyor'}
         </span>
       </span>
       {document.available && <ArrowUpRight className="shrink-0 text-coral" size={19} />}

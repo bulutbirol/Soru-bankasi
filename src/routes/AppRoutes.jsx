@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { AppLayout } from '../components/AppLayout'
 import { CategoriesPage } from '../pages/CategoriesPage'
 import { HomePage } from '../pages/HomePage'
@@ -18,7 +18,6 @@ const QualificationDocumentPage = lazyPage(() => import('../pages/QualificationD
 const QualificationExamPage = lazyPage(() => import('../pages/QualificationExamPage'), 'QualificationExamPage')
 const QualificationExamsPage = lazyPage(() => import('../pages/QualificationExamsPage'), 'QualificationExamsPage')
 const QualificationMixedPage = lazyPage(() => import('../pages/QualificationMixedPage'), 'QualificationMixedPage')
-const QualificationStudyPage = lazyPage(() => import('../pages/QualificationStudyPage'), 'QualificationStudyPage')
 const SettingsPage = lazyPage(() => import('../pages/SettingsPage'), 'SettingsPage')
 const SgsExamPage = lazyPage(() => import('../pages/SgsExamPage'), 'SgsExamPage')
 const SgsExamsPage = lazyPage(() => import('../pages/SgsExamsPage'), 'SgsExamsPage')
@@ -44,7 +43,7 @@ export function AppRoutes() {
           <Route path="qualification-exams/mixed" element={<QualificationMixedPage />} />
           <Route path="qualification-exams/:examId/:documentId" element={<QualificationDocumentPage />} />
           <Route path="qualification-exams/:examId" element={<QualificationExamPage />} />
-          <Route path="qualification-study" element={<QualificationStudyPage />} />
+          <Route path="qualification-study" element={<Navigate to="/qualification-exams" replace />} />
           <Route path="solve" element={<SolvePage />} />
           <Route path="wrong" element={<CollectionPage type="wrong" />} />
           <Route path="favorites" element={<CollectionPage type="favorites" />} />

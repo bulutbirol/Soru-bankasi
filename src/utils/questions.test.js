@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import questionBank from '../data/questionBank'
-import { calculateResult, getExamMinutes, prepareQuestions } from './questions'
+import { calculateResult, prepareQuestions } from './questions'
 
 const sample = [
   {
@@ -54,14 +54,6 @@ describe('calculateResult', () => {
       empty: 1,
       percentage: 33,
     })
-  })
-})
-
-describe('getExamMinutes', () => {
-  it('scales the official 165-minute duration to the selected question count', () => {
-    expect(getExamMinutes(130)).toBe(165)
-    expect(getExamMinutes(10)).toBe(13)
-    expect(getExamMinutes(1)).toBe(2)
   })
 })
 

@@ -1,4 +1,4 @@
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Play } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { EmptyState } from '../components/EmptyState'
 import { PageHeader } from '../components/PageHeader'
@@ -23,6 +23,7 @@ export function QualificationExamPage() {
   }
 
   const availableCount = exam.documents.filter((document) => document.available).length
+  const questionCount = exam.documents.reduce((total, document) => total + document.questionCount, 0)
 
   return (
     <div className="page-enter">
@@ -32,7 +33,12 @@ export function QualificationExamPage() {
       <PageHeader
         eyebrow={`${exam.year} · ${exam.period}. dönem`}
         title={`${exam.year}/${exam.period} Yeterlilik`}
-        description={`${availableCount} ders belgesi doğrulandı. Dersi seçerek kaynak ve içerik durumunu incele.`}
+        description={`${availableCount} ders belgesi ve ${questionCount} açıklamalı soru hazır. Bir ders seç veya dönemin tüm sorularını birlikte çöz.`}
+        action={
+          <Link to={`/solve?source=qualification&examIds=${exam.id}&limit=${questionCount}`} className="btn-primary">
+            <Play size={18} fill="currentColor" /> Dönemi çalış
+          </Link>
+        }
       />
       <div className="grid gap-3 md:grid-cols-2">
         {exam.documents.map((document) => (

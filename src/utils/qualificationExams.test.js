@@ -1,4 +1,5 @@
 import qualificationData from '../data/qualificationExams.json'
+import qualificationQuestions from '../data/qualificationQuestions.json'
 import {
   filterQualificationDocuments,
   getQualificationExams,
@@ -44,5 +45,39 @@ describe('qualification exam archive', () => {
     const lessons = getQualificationLessons(qualificationData.documents)
 
     expect(lessons).toEqual([...new Set(lessons)].sort((a, b) => a.localeCompare(b, 'tr')))
+  })
+
+  it('defines the reviewed question count for every accessible source document', () => {
+    const availableDocuments = qualificationData.documents.filter((document) => document.available)
+
+    expect(availableDocuments).toHaveLength(120)
+    expect(availableDocuments.every((document) => document.questionCount > 0)).toBe(true)
+    expect(availableDocuments.reduce((total, document) => total + document.questionCount, 0)).toBe(548)
+  })
+
+  it('contains one original multiple-choice learning question per reviewed source question', () => {
+    const availableDocuments = qualificationData.documents.filter((document) => document.available)
+    const expectedByDocument = new Map(
+      availableDocuments.map((document) => [document.id, document.questionCount]),
+    )
+    const actualByDocument = new Map()
+
+    qualificationQuestions.forEach((question) => {
+      actualByDocument.set(question.documentId, (actualByDocument.get(question.documentId) || 0) + 1)
+      expect(question.sourceType).toBe('qualification_original')
+      expect(question.options).toHaveLength(5)
+      expect(question.answer).toBeGreaterThanOrEqual(0)
+      expect(question.answer).toBeLessThan(5)
+      expect(question.question).toBeTruthy()
+      expect(question.explanation).toBeTruthy()
+      expect(question.lesson).toBeTruthy()
+      expect(question.topic).toBeTruthy()
+    })
+
+    expect(qualificationQuestions).toHaveLength(548)
+    expect(new Set(qualificationQuestions.map((question) => question.id)).size).toBe(548)
+    expect(new Set(qualificationQuestions.map((question) => question.question)).size).toBe(548)
+    expect(qualificationQuestions.some((question) => question.explanation.startsWith('Iş'))).toBe(false)
+    expect(actualByDocument).toEqual(expectedByDocument)
   })
 })

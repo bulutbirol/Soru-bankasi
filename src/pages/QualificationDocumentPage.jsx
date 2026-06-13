@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink, FileCheck2, ShieldCheck } from 'lucide-react'
+import { ArrowLeft, ExternalLink, FileCheck2, Play, ShieldCheck } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { EmptyState } from '../components/EmptyState'
 import { PageHeader } from '../components/PageHeader'
@@ -29,7 +29,7 @@ export function QualificationDocumentPage() {
       <PageHeader
         eyebrow={`${document.year}/${document.period} Yeterlilik`}
         title={document.lesson}
-        description="Soru ve cevap belgesi kaynak sağlayıcının sayfasında açılır."
+        description={`${document.questionCount} özgün ve açıklamalı soruyu çözebilir, kaynak PDF'yi ayrıca inceleyebilirsin.`}
       />
 
       <div className="panel overflow-hidden">
@@ -46,9 +46,17 @@ export function QualificationDocumentPage() {
             <p>Kaynak: Aktif Online SMMM Yeterlilik soru ve cevap arşivi.</p>
           </div>
           {document.available ? (
-            <a href={document.sourceUrl} target="_blank" rel="noreferrer" className="btn-primary">
-              <ExternalLink size={18} /> Kaynak PDF belgesini aç
-            </a>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                to={`/solve?source=qualification&documentIds=${document.id}&limit=${document.questionCount}`}
+                className="btn-primary"
+              >
+                <Play size={18} fill="currentColor" /> Soruları çöz
+              </Link>
+              <a href={document.sourceUrl} target="_blank" rel="noreferrer" className="btn-secondary">
+                <ExternalLink size={18} /> Kaynak PDF belgesini aç
+              </a>
+            </div>
           ) : (
             <p className="font-bold text-coral">Bu kaynak bağlantısı şu anda kullanılamıyor.</p>
           )}

@@ -51,10 +51,21 @@ describe('SMMM question bank', () => {
     expect(optionB).toHaveAttribute('aria-pressed', 'true')
   })
 
-  it('scales timed sessions to the selected question count', async () => {
+  it('treats legacy exam links as learning sessions without a timer', async () => {
+    const user = userEvent.setup()
     renderApp('/solve?mode=exam&category=Muhasebe&limit=10')
 
-    expect(await screen.findByText('13:00')).toBeInTheDocument()
+    expect(await screen.findByText('Çalışma modu')).toBeInTheDocument()
+    expect(screen.queryByText('13:00')).not.toBeInTheDocument()
+
+    await user.click((await screen.findAllByRole('button', { name: /^[A-E]\./ }))[0])
+    expect(screen.getByText('Cevap açıklaması')).toBeInTheDocument()
+  })
+
+  it('does not advertise a timed exam mode', () => {
+    renderApp('/')
+
+    expect(screen.queryByText('Süreli sınav')).not.toBeInTheDocument()
   })
 
   it('summarizes the complete SGS archive from its metadata', () => {
@@ -134,13 +145,22 @@ describe('SMMM question bank', () => {
       'noindex, nofollow',
     )
   })
+
+  it('starts a learning session from a qualification document', async () => {
+    renderApp('/qualification-exams/qualification-2026-1/qualification-2026-1-finansal-muhasebe')
+
+    expect(await screen.findByRole('link', { name: /Soruları çöz/i })).toHaveAttribute(
+      'href',
+      expect.stringContaining('source=qualification'),
+    )
+  })
 })
 
 describe.each([
   ['/', /SMMM yolculuğun/i],
   ['/categories', /Konuları parçalara böl/i],
   ['/categories/Muhasebe', /^Muhasebe$/i],
-  ['/solve?mode=practice&category=Muhasebe&limit=1', /Pratik modu/i],
+  ['/solve?mode=practice&category=Muhasebe&limit=1', /Çalışma modu/i],
   ['/wrong', /Yanlış listen temiz/i],
   ['/favorites', /Henüz favorin yok/i],
   ['/statistics', /Rakamlar çalışma ritmini anlatsın/i],
@@ -163,7 +183,7 @@ describe.each([
   ['/qualification-exams/qualification-2026-1', /2026\/1 Yeterlilik/i],
   ['/qualification-exams/qualification-2026-1/qualification-2026-1-finansal-muhasebe', /Finansal Muhasebe/i],
   ['/qualification-exams/mixed', /Yeterlilik belge araması/i],
-  ['/qualification-study', /İçe aktarılmış klasik soru bulunamadı/i],
+  ['/qualification-study', /SMMM Yeterlilik Sınavları/i],
   ['/olmayan-sayfa', /Bu sayfa bulunamadı/i],
 ])('route %s', (route, expectedText) => {
   it('renders without falling through to a broken screen', async () => {

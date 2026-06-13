@@ -1,28 +1,29 @@
-import { CheckCircle2, ChevronRight, Clock3, Home, XCircle } from 'lucide-react'
+import { CheckCircle2, ChevronRight, Home, XCircle } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { EmptyState } from '../components/EmptyState'
 import { QuestionCard } from '../components/QuestionCard'
 import pastExamQuestions from '../data/pastExamQuestions.json'
+import qualificationQuestions from '../data/qualificationQuestions.json'
 import questions from '../data/questionBank'
 import sgsExamQuestions from '../data/sgsExamQuestions.json'
 import sgsExamData from '../data/sgsExams.json'
 import { useProgress } from '../hooks/useProgress'
 import { useQuestionSession } from '../hooks/useQuestionSession'
-import { formatTime } from '../utils/format'
 import { filterPastExamQuestions, parseYears } from '../utils/pastExams'
-import { filterQuestions, getExamMinutes } from '../utils/questions'
+import { filterQuestions } from '../utils/questions'
 import { filterSgsQuestions, parseExamIds } from '../utils/sgsExams'
 
 export function SolvePage() {
   const [params] = useSearchParams()
-  const mode = params.get('mode') === 'exam' ? 'exam' : 'practice'
+  const mode = 'learning'
   const category = params.get('category') || ''
   const topic = params.get('topic') || ''
   const collection = params.get('collection')
   const sourceType = params.get('source')
   const yearsParam = params.get('years') || ''
   const examIdsParam = params.get('examIds') || ''
+  const documentIdsParam = params.get('documentIds') || ''
   const { progress, answer: recordAnswer, finishSession, toggleFavorite } = useProgress()
   const recordedAnswers = useRef(new Set())
   const recordedSession = useRef(false)
@@ -31,7 +32,7 @@ export function SolvePage() {
     let ids
     if (collection === 'wrong') ids = progress.wrongQuestionIds
     if (collection === 'favorites') ids = progress.favoriteQuestionIds
-    const allQuestions = [...questions, ...pastExamQuestions, ...sgsExamQuestions]
+    const allQuestions = [...questions, ...pastExamQuestions, ...sgsExamQuestions, ...qualificationQuestions]
     let filtered
 
     if (collection) {
@@ -48,17 +49,24 @@ export function SolvePage() {
         category,
         topic,
       })
+    } else if (sourceType === 'qualification') {
+      const documentIds = documentIdsParam.split(',').filter(Boolean)
+      const examIds = examIdsParam.split(',').filter(Boolean)
+      filtered = qualificationQuestions.filter((question) => (
+        (!documentIds.length || documentIds.includes(question.documentId))
+        && (!examIds.length || examIds.includes(question.examId))
+        && (!category || question.category === category)
+        && (!topic || question.topic === topic)
+      ))
     } else {
       filtered = filterQuestions(questions, { category, topic, ids })
     }
 
     const requested = Number(params.get('limit') || progress.settings.questionCount)
     return filtered.slice(0, Math.max(1, requested))
-  }, [category, collection, examIdsParam, params, progress.favoriteQuestionIds, progress.settings.questionCount, progress.wrongQuestionIds, sourceType, topic, yearsParam])
+  }, [category, collection, documentIdsParam, examIdsParam, params, progress.favoriteQuestionIds, progress.settings.questionCount, progress.wrongQuestionIds, sourceType, topic, yearsParam])
 
   const session = useQuestionSession(source, {
-    mode,
-    minutes: getExamMinutes(source.length),
     shuffleOptions: progress.settings.shuffleOptions,
   })
 
@@ -90,7 +98,7 @@ export function SolvePage() {
     recordedSession.current = true
     finishSession({
       mode,
-      category: category || (sourceType === 'past_exam' ? 'Çıkmış Sorular' : sourceType === 'sgs' ? 'SGS' : 'Karma'),
+      category: category || (sourceType === 'past_exam' ? 'Çıkmış Sorular' : sourceType === 'sgs' ? 'SGS' : sourceType === 'qualification' ? 'SMMM Yeterlilik' : 'Karma'),
       ...session.result,
     })
   }, [category, finishSession, mode, recordQuestionAnswer, session.answers, session.finished, session.questions, session.result, sourceType])
@@ -113,7 +121,7 @@ export function SolvePage() {
               %{session.result.percentage}
             </span>
             <h1 className="mt-5 font-display text-3xl font-bold">Çalışma tamamlandı</h1>
-            <p className="mt-2 text-sm text-slate-300">{mode === 'exam' ? 'Süreli sınav' : 'Pratik'} sonucun cihazına kaydedildi.</p>
+            <p className="mt-2 text-sm text-slate-300">Çalışma sonucun cihazına kaydedildi.</p>
           </div>
           <div className="grid grid-cols-3 gap-2 p-5 sm:p-8">
             {[
@@ -141,14 +149,9 @@ export function SolvePage() {
     <div className="page-enter mx-auto max-w-3xl">
       <div className="mb-4 flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-coral">{mode === 'exam' ? 'Süreli sınav' : 'Pratik modu'}</p>
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-coral">Çalışma modu</p>
           <p className="mt-1 text-sm font-bold">Soru {session.currentIndex + 1} / {session.questions.length}</p>
         </div>
-        {mode === 'exam' && (
-          <div className="flex items-center gap-2 rounded-2xl bg-ink px-4 py-2 font-mono font-bold text-amber">
-            <Clock3 size={18} /> {formatTime(session.remainingSeconds)}
-          </div>
-        )}
       </div>
       <div className="mb-5 h-2 overflow-hidden rounded-full bg-ink/10 dark:bg-white/10">
         <div className="h-full rounded-full bg-amber transition-all" style={{ width: `${session.progress}%` }} />
@@ -156,7 +159,6 @@ export function SolvePage() {
       <QuestionCard
         question={session.currentQuestion}
         selectedAnswer={session.currentAnswer}
-        mode={mode}
         favorite={progress.favoriteQuestionIds.includes(session.currentQuestion.id)}
         onAnswer={session.answer}
         onToggleFavorite={() => toggleFavorite(session.currentQuestion.id)}

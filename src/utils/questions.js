@@ -55,11 +55,6 @@ export function filterQuestions(questions, filters = {}) {
   })
 }
 
-export function getExamMinutes(questionCount) {
-  const normalizedCount = Math.max(0, Number(questionCount) || 0)
-  return Math.max(1, Math.ceil((normalizedCount * 165) / 130))
-}
-
 export function getCategorySummary(questions) {
   const categories = new Map()
   questions.forEach((question) => {

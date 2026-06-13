@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock3, Play } from 'lucide-react'
+import { ArrowLeft, Play } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { EmptyState } from '../components/EmptyState'
@@ -31,11 +31,10 @@ export function PastExamYearPage() {
     return <EmptyState title="Bu sınav yılı bulunamadı" description="2020 ile 2026 arasındaki yıllardan birini seçebilirsin." actionLabel="Çıkmış sorulara dön" actionTo="/past-exams" />
   }
 
-  const solveUrl = (mode) => {
+  const solveUrl = () => {
     const params = new URLSearchParams({
       source: 'past_exam',
       years: String(year),
-      mode,
       limit: String(filtered.length),
     })
     if (category) params.set('category', category)
@@ -71,11 +70,8 @@ export function PastExamYearPage() {
           <p className="mt-1 text-sm text-slate-500">{category || 'Tüm dersler'} · {topic || 'Tüm konular'}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Link to={solveUrl('practice')} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
-            <Play size={18} fill="currentColor" /> Pratik çöz
-          </Link>
-          <Link to={solveUrl('exam')} className={`btn-secondary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
-            <Clock3 size={18} /> Süreli çöz
+          <Link to={solveUrl()} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
+            <Play size={18} fill="currentColor" /> Soruları çöz
           </Link>
         </div>
       </div>

@@ -39,7 +39,7 @@ export function getSeoConfig(pathname) {
     description = '2022-2026 arasındaki 13 SGS kitapçığından 1.690 soruyu tek sınav veya karma modda çöz.'
   } else if (path === '/sgs-exams/mixed') {
     title = 'Karma SGS Çıkmış Sorular'
-    description = 'Staja Giriş Sınavı arşivindeki 1.690 sorudan karma ve süreli çalışma oluştur.'
+    description = 'Staja Giriş Sınavı arşivindeki 1.690 sorudan açıklamalı karma çalışma oluştur.'
   } else if (path.startsWith('/sgs-exams/')) {
     title = 'SGS Sınav Soruları'
     description = 'Seçtiğin Staja Giriş Sınavı kitapçığındaki 130 soruyu çevrimdışı ve ücretsiz çöz.'

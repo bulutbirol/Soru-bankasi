@@ -87,7 +87,7 @@ export function StatisticsPage() {
               <div className="flex items-center justify-between gap-4 py-4" key={`${session.completedAt}-${index}`}>
                 <div>
                   <strong className="block">{session.category}</strong>
-                  <span className="text-xs text-slate-500">{formatDate(session.completedAt)} · {session.mode === 'exam' ? 'Sınav' : 'Pratik'}</span>
+                  <span className="text-xs text-slate-500">{formatDate(session.completedAt)} · Çalışma</span>
                 </div>
                 <span className="rounded-xl bg-ink px-3 py-2 font-bold text-amber">%{session.percentage}</span>
               </div>

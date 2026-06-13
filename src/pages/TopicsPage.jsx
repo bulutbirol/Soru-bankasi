@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock3, Play } from 'lucide-react'
+import { ArrowLeft, Play } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { EmptyState } from '../components/EmptyState'
 import { PageHeader } from '../components/PageHeader'
@@ -22,10 +22,10 @@ export function TopicsPage() {
       <PageHeader
         eyebrow="Konu seçimi"
         title={decodedCategory}
-        description="Bir konu seçerek odaklı pratik yap veya doğrudan süreli sınava geç."
+        description="Bir konu seçerek açıklamalı sorularla odaklı çalış."
         action={
-          <Link to={`/solve?mode=exam&category=${encodeURIComponent(decodedCategory)}`} className="btn-secondary">
-            <Clock3 size={18} /> Ders sınavı
+          <Link to={`/solve?category=${encodeURIComponent(decodedCategory)}`} className="btn-secondary">
+            <Play size={18} /> Tüm dersi çalış
           </Link>
         }
       />
@@ -40,7 +40,7 @@ export function TopicsPage() {
               <p className="mt-1 text-xs font-semibold text-slate-500">{topic.count} örnek soru</p>
             </div>
             <Link
-              to={`/solve?mode=practice&category=${encodeURIComponent(decodedCategory)}&topic=${encodeURIComponent(topic.name)}`}
+              to={`/solve?category=${encodeURIComponent(decodedCategory)}&topic=${encodeURIComponent(topic.name)}`}
               className="btn-primary"
             >
               <Play size={17} fill="currentColor" /> Çözmeye başla

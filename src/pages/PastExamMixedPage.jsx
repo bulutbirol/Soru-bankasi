@@ -1,4 +1,4 @@
-import { Clock3, Layers3, Play } from 'lucide-react'
+import { Layers3, Play } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { PageHeader } from '../components/PageHeader'
@@ -27,11 +27,10 @@ export function PastExamMixedPage() {
     [category, preset.years, topic],
   )
 
-  const solveUrl = (mode) => {
+  const solveUrl = () => {
     const params = new URLSearchParams({
       source: 'past_exam',
       years: preset.years.join(','),
-      mode,
       limit: String(filtered.length),
     })
     if (category) params.set('category', category)
@@ -86,11 +85,8 @@ export function PastExamMixedPage() {
           <p className="mt-1 text-sm text-slate-500">{preset.years.at(-1)}-{preset.years[0]} · {category || 'Tüm dersler'} · {topic || 'Tüm konular'}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Link to={solveUrl('practice')} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
-            <Play size={18} fill="currentColor" /> Pratik çöz
-          </Link>
-          <Link to={solveUrl('exam')} className={`btn-secondary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
-            <Clock3 size={18} /> Süreli çöz
+          <Link to={solveUrl()} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
+            <Play size={18} fill="currentColor" /> Soruları çöz
           </Link>
         </div>
       </div>

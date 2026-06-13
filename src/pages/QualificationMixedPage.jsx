@@ -1,4 +1,6 @@
+import { Play } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { PageHeader } from '../components/PageHeader'
 import { QualificationDocumentCard } from '../components/QualificationDocumentCard'
 import qualificationData from '../data/qualificationExams.json'
@@ -23,13 +25,19 @@ export function QualificationMixedPage() {
     }),
     [availableDocuments, lesson, year],
   )
+  const questionCount = filtered.reduce((total, document) => total + document.questionCount, 0)
+  const solveParams = new URLSearchParams({
+    source: 'qualification',
+    documentIds: filtered.map((document) => document.id).join(','),
+    limit: String(questionCount),
+  })
 
   return (
     <div className="page-enter">
       <PageHeader
         eyebrow="Karma arşiv"
         title="Yeterlilik belge araması"
-        description="Tüm doğrulanmış Yeterlilik belgelerini yıl ve ders seçerek filtrele."
+        description="Yıl ve ders seçerek özgün, cevaplı ve açıklamalı Yeterlilik çalışma setini oluştur."
       />
       <div className="panel grid gap-4 p-5 sm:grid-cols-2">
         <label className="text-sm font-bold">
@@ -47,7 +55,15 @@ export function QualificationMixedPage() {
           </select>
         </label>
       </div>
-      <p className="my-5 text-sm font-bold text-slate-500">{filtered.length} belge bulundu</p>
+      <div className="my-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm font-bold text-slate-500">{filtered.length} belge · {questionCount} soru bulundu</p>
+        <Link
+          to={`/solve?${solveParams}`}
+          className={`btn-primary ${questionCount ? '' : 'pointer-events-none opacity-40'}`}
+        >
+          <Play size={18} fill="currentColor" /> Seçimi çalış
+        </Link>
+      </div>
       <div className="grid gap-3 md:grid-cols-2">
         {filtered.map((document) => <QualificationDocumentCard document={document} key={document.id} />)}
       </div>

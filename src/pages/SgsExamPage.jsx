@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock3, Play } from 'lucide-react'
+import { ArrowLeft, Play } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { EmptyState } from '../components/EmptyState'
@@ -27,11 +27,10 @@ export function SgsExamPage() {
     return <EmptyState title="Bu SGS sınavı bulunamadı" description="Arşivde bulunan sınavlardan birini seçebilirsin." actionLabel="SGS arşivine dön" actionTo="/sgs-exams" />
   }
 
-  const solveUrl = (mode) => {
+  const solveUrl = () => {
     const params = new URLSearchParams({
       source: 'sgs',
       examIds: exam.id,
-      mode,
       limit: String(filtered.length),
     })
     if (category) params.set('category', category)
@@ -47,7 +46,7 @@ export function SgsExamPage() {
       <PageHeader
         eyebrow="Tek sınav çalışması"
         title={`${exam.date} SGS`}
-        description="Kaynak sınavdaki 130 soruyu ders ve konu filtresiyle pratik veya süreli modda çöz."
+        description="Kaynak sınavdaki 130 soruyu ders ve konu filtresiyle, cevabı ve açıklamayı anında görerek çöz."
       />
       <PastExamFilters
         {...options}
@@ -65,11 +64,8 @@ export function SgsExamPage() {
           <p className="mt-1 text-sm text-slate-500">{category || 'Tüm dersler'} · {topic || 'Tüm konular'}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Link to={solveUrl('practice')} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
-            <Play size={18} fill="currentColor" /> Pratik çöz
-          </Link>
-          <Link to={solveUrl('exam')} className={`btn-secondary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
-            <Clock3 size={18} /> Süreli çöz
+          <Link to={solveUrl()} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>
+            <Play size={18} fill="currentColor" /> Soruları çöz
           </Link>
         </div>
       </div>
