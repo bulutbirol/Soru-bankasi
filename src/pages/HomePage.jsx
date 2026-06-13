@@ -1,7 +1,8 @@
-import { ArrowRight, CalendarRange, Clock3, Flame, GraduationCap, Layers3, Play, RotateCcw, Target } from 'lucide-react'
+import { ArrowRight, Award, CalendarRange, Clock3, Flame, GraduationCap, Layers3, Play, RotateCcw, Target } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CategoryCard } from '../components/CategoryCard'
 import questions from '../data/questionBank'
+import qualificationData from '../data/qualificationExams.json'
 import sgsExamData from '../data/sgsExams.json'
 import { useProgress } from '../hooks/useProgress'
 import { getCategorySummary } from '../utils/questions'
@@ -17,6 +18,7 @@ export function HomePage() {
   const firstSgsYear = Math.min(...sgsYears)
   const lastSgsYear = Math.max(...sgsYears)
   const sgsQuestionCount = sgsExamData.exams.reduce((sum, exam) => sum + exam.questionCount, 0)
+  const qualificationDocumentCount = qualificationData.documents.filter((document) => document.available).length
 
   return (
     <div className="page-enter">
@@ -104,6 +106,29 @@ export function HomePage() {
           </div>
           <span className="inline-flex items-center gap-2 text-sm font-extrabold">
             SGS arşivini aç <ArrowRight className="transition group-hover:translate-x-1" size={17} />
+          </span>
+        </Link>
+      </section>
+
+      <section className="mt-4">
+        <Link
+          to="/qualification-exams"
+          className="group flex flex-col gap-5 overflow-hidden rounded-3xl bg-coral p-6 text-white shadow-lift transition hover:-translate-y-1 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div className="flex items-start gap-4">
+            <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white/15 text-white">
+              <Award size={24} />
+            </span>
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-white/70">Soru ve cevap belgeleri</p>
+              <h2 className="mt-1 font-display text-2xl font-bold">SMMM Yeterlilik Sınavları</h2>
+              <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-white/80">
+                Dönem ve ders bazında {qualificationDocumentCount} doğrulanmış Yeterlilik belgesine ulaş.
+              </p>
+            </div>
+          </div>
+          <span className="inline-flex items-center gap-2 text-sm font-extrabold">
+            Yeterlilik arşivini aç <ArrowRight className="transition group-hover:translate-x-1" size={17} />
           </span>
         </Link>
       </section>

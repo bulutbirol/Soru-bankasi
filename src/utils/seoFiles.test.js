@@ -9,8 +9,10 @@ describe('deploy SEO files', () => {
     expect(robots).toContain('Sitemap: https://smmmsorubankasi.com/sitemap.xml')
     expect(sitemap).toContain('<loc>https://smmmsorubankasi.com/</loc>')
     expect(sitemap).toContain('<loc>https://smmmsorubankasi.com/past-exams/2026</loc>')
+    expect(sitemap).toContain('<loc>https://smmmsorubankasi.com/qualification-exams</loc>')
     expect(sitemap).not.toContain('/wrong')
     expect(sitemap).not.toContain('/solve')
+    expect(sitemap).not.toContain('/qualification-study')
   })
 
   it('publishes install and SPA fallback configuration', () => {

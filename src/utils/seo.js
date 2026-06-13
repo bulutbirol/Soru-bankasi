@@ -1,7 +1,7 @@
 export const SITE_ORIGIN = 'https://smmmsorubankasi.com'
 export const SITE_NAME = 'SMMM Soru Bankası'
 
-const privateRoutes = ['/solve', '/wrong', '/favorites', '/statistics', '/settings']
+const privateRoutes = ['/solve', '/wrong', '/favorites', '/statistics', '/settings', '/qualification-study']
 
 function decodePathPart(value) {
   try {
@@ -43,6 +43,17 @@ export function getSeoConfig(pathname) {
   } else if (path.startsWith('/sgs-exams/')) {
     title = 'SGS Sınav Soruları'
     description = 'Seçtiğin Staja Giriş Sınavı kitapçığındaki 130 soruyu çevrimdışı ve ücretsiz çöz.'
+  } else if (path === '/qualification-exams') {
+    title = 'SMMM Yeterlilik Sınavları'
+    description = 'SMMM Yeterlilik sınavlarının dönem ve ders bazındaki soru-cevap PDF arşivine ücretsiz ulaş.'
+  } else if (path === '/qualification-exams/mixed') {
+    title = 'SMMM Yeterlilik Belge Araması'
+    description = 'SMMM Yeterlilik soru ve cevap belgelerini yıl ve ders seçerek filtrele.'
+  } else if (path.startsWith('/qualification-exams/')) {
+    title = 'SMMM Yeterlilik Soru ve Cevapları'
+    description = 'Seçtiğin SMMM Yeterlilik dönemi ve dersine ait doğrulanmış kaynak belgeyi incele.'
+  } else if (path === '/qualification-study') {
+    title = 'Yeterlilik Klasik Soru Çalışması'
   } else if (path === '/about') {
     title = 'Hakkında ve Gizlilik Politikası'
     description = 'SMMM Soru Bankası uygulamasının yerel veri saklama, gizlilik ve içerik politikasını incele.'

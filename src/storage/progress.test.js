@@ -3,6 +3,7 @@ import {
   clearWrongQuestions,
   createDefaultProgress,
   loadProgress,
+  markQualificationComplete,
   recordAnswer,
   saveProgress,
   toggleFavorite,
@@ -50,5 +51,12 @@ describe('progress storage', () => {
       favoriteQuestionIds: ['q2'],
       totals: { answered: 4, correct: 2, wrong: 2, exams: 1 },
     })
+  })
+
+  it('marks a written qualification question as completed once', () => {
+    const first = markQualificationComplete(createDefaultProgress(), 'qualification-question-1')
+    const second = markQualificationComplete(first, 'qualification-question-1')
+
+    expect(second.completedQualificationIds).toEqual(['qualification-question-1'])
   })
 })

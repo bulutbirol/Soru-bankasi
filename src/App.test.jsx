@@ -63,6 +63,13 @@ describe('SMMM question bank', () => {
     expect(screen.getByText(/2022 ve 2026 dönemlerindeki 13 sınavı/i)).toBeInTheDocument()
   })
 
+  it('links to the qualification archive from the home page', () => {
+    renderApp('/')
+
+    expect(screen.getByRole('link', { name: /SMMM Yeterlilik Sınavları/i }))
+      .toHaveAttribute('href', '/qualification-exams')
+  })
+
   it('shows the full year range on the SGS archive page', async () => {
     renderApp('/sgs-exams')
 
@@ -110,6 +117,23 @@ describe('SMMM question bank', () => {
       'noindex, nofollow',
     )
   })
+
+  it('sets qualification archive metadata and keeps study sessions private', () => {
+    const { unmount } = renderApp('/qualification-exams')
+
+    expect(document.title).toMatch(/SMMM Yeterlilik Sınavları/)
+    expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://smmmsorubankasi.com/qualification-exams',
+    )
+    unmount()
+
+    renderApp('/qualification-study')
+    expect(document.querySelector('meta[name="robots"]')).toHaveAttribute(
+      'content',
+      'noindex, nofollow',
+    )
+  })
 })
 
 describe.each([
@@ -135,6 +159,11 @@ describe.each([
   ['/sgs-exams/sgs-2025-11-22', /22 Kasım 2025 SGS/i],
   ['/sgs-exams/sgs-2026-04-18', /18 Nisan 2026 SGS/i],
   ['/sgs-exams/mixed', /Karma SGS çalışması/i],
+  ['/qualification-exams', /SMMM Yeterlilik Sınavları/i],
+  ['/qualification-exams/qualification-2026-1', /2026\/1 Yeterlilik/i],
+  ['/qualification-exams/qualification-2026-1/qualification-2026-1-finansal-muhasebe', /Finansal Muhasebe/i],
+  ['/qualification-exams/mixed', /Yeterlilik belge araması/i],
+  ['/qualification-study', /İçe aktarılmış klasik soru bulunamadı/i],
   ['/olmayan-sayfa', /Bu sayfa bulunamadı/i],
 ])('route %s', (route, expectedText) => {
   it('renders without falling through to a broken screen', async () => {

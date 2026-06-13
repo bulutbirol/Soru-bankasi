@@ -6,6 +6,7 @@ export function createDefaultProgress() {
     answeredById: {},
     wrongQuestionIds: [],
     favoriteQuestionIds: [],
+    completedQualificationIds: [],
     totals: { answered: 0, correct: 0, wrong: 0, exams: 0 },
     byCategory: {},
     dailyActivity: {},
@@ -32,6 +33,7 @@ export function normalizeProgress(value) {
     answeredById: value.answeredById || {},
     wrongQuestionIds: unique(value.wrongQuestionIds || []),
     favoriteQuestionIds: unique(value.favoriteQuestionIds || []),
+    completedQualificationIds: unique(value.completedQualificationIds || []),
     totals: { ...defaults.totals, ...(value.totals || {}) },
     byCategory: value.byCategory || {},
     dailyActivity: value.dailyActivity || {},
@@ -113,6 +115,16 @@ export function clearWrongQuestions(progress) {
   return normalizeProgress({
     ...progress,
     wrongQuestionIds: [],
+  })
+}
+
+export function markQualificationComplete(progress, questionId) {
+  return normalizeProgress({
+    ...progress,
+    completedQualificationIds: unique([
+      ...progress.completedQualificationIds,
+      questionId,
+    ]),
   })
 }
 

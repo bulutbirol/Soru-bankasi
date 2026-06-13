@@ -1,0 +1,19 @@
+{
+  "documents": [
+    {
+      "file": "authorized-finansal-muhasebe.pdf",
+      "documentId": "qualification-2026-1-finansal-muhasebe",
+      "examId": "qualification-2026-1",
+      "year": 2026,
+      "period": 1,
+      "lesson": "Finansal Muhasebe",
+      "pairs": [
+        {
+          "questionPages": [1],
+          "answerPages": [2],
+          "questionTitle": "Finansal Muhasebe klasik soru 1"
+        }
+      ]
+    }
+  ]
+}

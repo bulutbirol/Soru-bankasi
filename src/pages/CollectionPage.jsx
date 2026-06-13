@@ -3,15 +3,20 @@ import { Link } from 'react-router-dom'
 import { EmptyState } from '../components/EmptyState'
 import { PageHeader } from '../components/PageHeader'
 import pastExamQuestions from '../data/pastExamQuestions.json'
+import qualificationQuestions from '../data/qualificationQuestions.json'
 import questions from '../data/questionBank'
 import sgsExamQuestions from '../data/sgsExamQuestions.json'
 import { useProgress } from '../hooks/useProgress'
+import { getCollectionItems } from '../utils/collections'
 
 export function CollectionPage({ type }) {
   const { progress, toggleFavorite, clearWrongQuestions } = useProgress()
   const isWrong = type === 'wrong'
   const ids = isWrong ? progress.wrongQuestionIds : progress.favoriteQuestionIds
-  const items = [...questions, ...pastExamQuestions, ...sgsExamQuestions].filter((question) => ids.includes(question.id))
+  const quizQuestions = [...questions, ...pastExamQuestions, ...sgsExamQuestions]
+  const items = getCollectionItems(ids, quizQuestions, qualificationQuestions)
+  const quizItems = items.filter((question) => question.type !== 'written')
+  const writtenItems = items.filter((question) => question.type === 'written')
   const title = isWrong ? 'Yanlış cevapların' : 'Favori soruların'
   const handleClearWrongQuestions = () => {
     if (window.confirm('Yanlışlar listesindeki tüm sorular temizlensin mi?')) {
@@ -45,9 +50,19 @@ export function CollectionPage({ type }) {
                 <Trash2 size={18} /> Yanlışları temizle
               </button>
             )}
-            <Link to={`/solve?mode=practice&collection=${type}&limit=${items.length}`} className="btn-primary">
-              <Play size={18} fill="currentColor" /> Tümünü çöz
-            </Link>
+            {quizItems.length > 0 && (
+              <Link to={`/solve?mode=practice&collection=${type}&limit=${quizItems.length}`} className="btn-primary">
+                <Play size={18} fill="currentColor" /> Test sorularını çöz
+              </Link>
+            )}
+            {!isWrong && writtenItems.length > 0 && (
+              <Link
+                to={`/qualification-study?ids=${writtenItems.map((question) => question.id).join(',')}`}
+                className="btn-secondary"
+              >
+                Klasik soruları çalış
+              </Link>
+            )}
           </div>
         }
       />
@@ -58,7 +73,11 @@ export function CollectionPage({ type }) {
               {isWrong ? <XCircle size={21} /> : <Heart size={21} fill="currentColor" />}
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-xs font-bold text-slate-500">{question.category} · {question.topic}</p>
+              <p className="text-xs font-bold text-slate-500">
+                {question.type === 'written'
+                  ? `${question.year}/${question.period} · ${question.lesson}`
+                  : `${question.category} · ${question.topic}`}
+              </p>
               <h2 className="mt-1 font-bold leading-6">{question.question}</h2>
               {question.questionImage && (
                 <img src={question.questionImage} alt="" className="mt-3 max-h-44 rounded-xl bg-white object-contain" />

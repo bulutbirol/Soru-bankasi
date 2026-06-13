@@ -3,6 +3,7 @@ import {
   clearProgress,
   clearWrongQuestions,
   loadProgress,
+  markQualificationComplete,
   recordAnswer,
   recordSession,
   saveProgress,
@@ -31,6 +32,9 @@ export function ProgressProvider({ children }) {
       finishSession: (payload) => setProgress((current) => recordSession(current, payload)),
       toggleFavorite: (id) => setProgress((current) => toggleFavorite(current, id)),
       clearWrongQuestions: () => setProgress((current) => clearWrongQuestions(current)),
+      completeQualificationQuestion: (id) => (
+        setProgress((current) => markQualificationComplete(current, id))
+      ),
       updateSettings: (settings) => setProgress((current) => updateSettings(current, settings)),
       reset: () => setProgress(clearProgress()),
     }),

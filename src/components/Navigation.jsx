@@ -1,5 +1,6 @@
 import {
   BarChart3,
+  Award,
   BookOpen,
   Heart,
   Home,
@@ -17,6 +18,7 @@ const primary = [
   { to: '/categories', label: 'Dersler', icon: ListTree },
   { to: '/past-exams', label: 'Çıkmış Sorular', icon: CalendarRange, desktopOnly: true },
   { to: '/sgs-exams', label: 'SGS Sınavları', icon: GraduationCap, desktopOnly: true },
+  { to: '/qualification-exams', label: 'Yeterlilik', icon: Award, desktopOnly: true },
   { to: '/wrong', label: 'Yanlışlar', icon: XCircle },
   { to: '/favorites', label: 'Favoriler', icon: Heart },
   { to: '/statistics', label: 'İstatistik', icon: BarChart3 },
