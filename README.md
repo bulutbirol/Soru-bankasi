@@ -19,6 +19,6 @@ SMMM ve Staja Giriş Sınavı'na hazırlanırken ihtiyaç duyduğun sorulara tek
 
 ## Hemen Çalışmaya Başla
 
-[smmmsorubankasi.com](https://smmmsorubankasi.com)
+[https://smmm-soru-bankasi.vercel.app/](https://smmm-soru-bankasi.vercel.app/)
 
 > Metin tabanlı çalışma soruları eğitim amacıyla özgün olarak hazırlanmıştır.
