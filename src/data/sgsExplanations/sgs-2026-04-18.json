@@ -270,5 +270,108 @@
       "Diğer şıklar abartılı ya da mantıksız genellemeler."
     ],
     "tip": "while / although / though → iki cümle arasında karşıtlık arayın."
+  },
+  "sgs-2026-04-18-031": {
+    "category": "Muhasebe",
+    "topic": "Genel Muhasebe",
+    "steps": [
+      "Alıcı işletme senedini (321) vadeden önce ödüyor; borç tutarının tamamı kapanır: 321 borç 500.000.",
+      "%10 iskonto: 500.000 × %10 = 50.000. Kasadan çıkan 450.000.",
+      "Erken ödeme iskontosu alıcı için malın maliyetini düşürür; alış iskontosu 153 Ticari Mallar hesabının alacağına yazılır.",
+      "Kayıt: 321 borç 500.000 / 100 alacak 450.000, 153 alacak 50.000."
+    ],
+    "tip": "Alış iskontosu maliyetten düşülür, gelir yazılmaz."
+  },
+  "sgs-2026-04-18-032": {
+    "category": "Muhasebe",
+    "topic": "Duran Varlıklar",
+    "steps": [
+      "Varlığın değerini veya kapasitesini artıran harcamalar aktifleştirilir: klima bedeli 100.000 + montaj 10.000.",
+      "10.000 km bakımı (yedek parça + işçilik) olağan onarım-bakımdır; gider yazılır.",
+      "KDV, 191 İndirilecek KDV'ye gider; maliyete eklenmez.",
+      "Taşıtlar borcu: 110.000."
+    ],
+    "tip": "Değer artıran = aktif, mevcut durumu koruyan = gider."
+  },
+  "sgs-2026-04-18-033": {
+    "category": "Muhasebe",
+    "topic": "Yabancı Kaynaklar",
+    "steps": [
+      "Kredi alındığında 100.000 $ × 40 = 4.000.000 olarak 300'e kaydedildi; kapanışta bu tutarla borçlandırılır.",
+      "Ödenen toplam: (100.000 + 20.000) $ × 45 = 5.400.000.",
+      "Fark 1.400.000 = faiz 900.000 + kur farkı 500.000. Borçlanmalarla ilgili faiz ve kur farkları 780 Finansman Giderleri'ne yazılır.",
+      "Kayıt: 300 borç 4.000.000, 780 borç 1.400.000 / 102 alacak 5.400.000."
+    ],
+    "tip": "Kredi kaynaklı kur farkı 656'ya değil, 780 Finansman Giderleri'ne gider."
+  },
+  "sgs-2026-04-18-034": {
+    "category": "Muhasebe",
+    "topic": "Yabancı Kaynaklar",
+    "steps": [
+      "Yapım 14 ay sürüyor; avans alındığında teslim bir yıldan uzun vadede olduğu için 440 Alınan Sipariş Avansları'na (uzun vadeli) kaydedilir.",
+      "31.12.2025'te teslime 9 ay kalır; bir yılın altına inen tutar kısa vadeye aktarılır.",
+      "Kayıt: 440 borç / 340 alacak. Doğru kullanım: 440 borçlu."
+    ],
+    "tip": "Dönem sonunda vadesi 1 yılın altına düşen uzun vadeli hesaplar kısa vadeli karşılığına aktarılır."
+  },
+  "sgs-2026-04-18-035": {
+    "category": "Muhasebe",
+    "topic": "Dönen Varlıklar",
+    "steps": [
+      "Akreditif, ithal edilecek mal için satıcı lehine bankaya yatırılan güvencedir; mal gelene kadar verilmiş bir avans niteliğindedir.",
+      "Mal siparişi için verilen avanslar 159 Verilen Sipariş Avansları hesabında izlenir.",
+      "Akreditif açılırken 159 borçlandırılır, ödeme yapılan hesap (102) alacaklandırılır."
+    ],
+    "tip": "İthalatta akreditif ve gümrük ödemeleri mal gelene kadar 159'da toplanır."
+  },
+  "sgs-2026-04-18-036": {
+    "category": "Muhasebe",
+    "topic": "Öz Kaynaklar",
+    "steps": [
+      "Dağıtılan, geçmiş yıllar kârıdır; 570 Geçmiş Yıllar Kârları 1.000.000 borçlandırılır.",
+      "Karşılığında 540, 541, 542 yedek hesapları 100.000'er ve 331 Ortaklara Borçlar 700.000 alacaklandırılır.",
+      "590 Dönem Net Kârı bu kayıtta yer almaz; o, cari dönemin kârıdır. D yanlıştır."
+    ],
+    "tip": "Hangi kârın dağıtıldığına bak: geçmiş yıl → 570, cari yıl → 590."
+  },
+  "sgs-2026-04-18-037": {
+    "category": "Muhasebe",
+    "topic": "Hesap Planı",
+    "steps": [
+      "Pasifte yer alıp borç kalanı veren hesap, pasif düzenleyici hesaptır.",
+      "322 Borç Senetleri Reeskontu, 321 Borç Senetleri'ni azaltır ve borç kalanı verir.",
+      "Birikmiş amortisman ve değer düşüklüğü karşılığı aktif düzenleyicidir (alacak kalanı verir)."
+    ],
+    "tip": "Aktif düzenleyici alacak, pasif düzenleyici borç kalanı verir."
+  },
+  "sgs-2026-04-18-038": {
+    "category": "Muhasebe",
+    "topic": "Dönen Varlıklar",
+    "steps": [
+      "Hisseler geçici yatırım amaçlı (110 Hisse Senetleri); iştirak değil.",
+      "Genel kurul kâr payı dağıtım kararıyla alacak doğar: 136 Diğer Çeşitli Alacaklar borç.",
+      "Menkul kıymetlerden elde edilen kâr payı 649 Diğer Olağan Gelir ve Kârlar'a alacak yazılır."
+    ],
+    "tip": "İştirak → 641 İştiraklerden Temettü, geçici yatırım → 649."
+  },
+  "sgs-2026-04-18-039": {
+    "category": "Muhasebe",
+    "topic": "Dönen Varlıklar",
+    "steps": [
+      "İşletme elindeki bonoyu (alacak senedi) bankaya kırdırıyor; senet portföyden çıkar: 121 Alacak Senetleri 100.000 alacak.",
+      "Bankaya geçen net tutar 95.000: 102 Bankalar borç.",
+      "İskonto 5.000 finansman maliyetidir: 780 Finansman Giderleri borç."
+    ],
+    "tip": "Senet iskontosu = senet elden çıkar (121 alacak), iskonto gideri 780."
+  },
+  "sgs-2026-04-18-040": {
+    "category": "Muhasebe",
+    "topic": "Reeskont",
+    "steps": [
+      "Senedin nominal değeri: tasarruf değeri 9.600 + reeskont 400 = 10.000.",
+      "Dönem başında reeskont kaydı ters çevrilerek kapatılır; vade sonunda senet nominal değeriyle ödenir.",
+      "Kayıt: 321 Borç Senetleri borç 10.000 / 102 Bankalar alacak 10.000."
+    ],
+    "tip": "Senetler her zaman nominal (yüz) değeriyle kapanır."
   }
 }
