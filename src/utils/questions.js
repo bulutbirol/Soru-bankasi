@@ -80,3 +80,9 @@ export function getTopics(questions, category) {
   })
   return [...topics.entries()].map(([name, count]) => ({ name, count }))
 }
+
+export function pickSessionQuestions(pool, answeredById, limit, random = Math.random) {
+  const fresh = pool.filter((question) => !answeredById[question.id])
+  const seen = pool.filter((question) => answeredById[question.id])
+  return [...shuffle(fresh, random), ...shuffle(seen, random)].slice(0, Math.max(1, limit))
+}

@@ -27,7 +27,7 @@ describe('SMMM question bank', () => {
     await user.click((await screen.findAllByRole('button', { name: /^[A-E]\./ }))[0])
 
     expect(await screen.findByRole('heading', { name: 'Nasıl çözülür?' })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /Testi bitir/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Önceki soru/i })).toBeInTheDocument()
   })
 
   it('opens an imported SGS question with its source image', async () => {
@@ -65,6 +65,41 @@ describe('SMMM question bank', () => {
     expect(saved.totals.wrong).toBe(0)
   })
 
+  it('hides the app menus in focus mode and shows one segment per question', async () => {
+    renderApp('/solve?source=sgs&examIds=sgs-2025-11-22&limit=10')
+
+    expect(await screen.findByRole('img', { name: /10 sorudan 0 tanesi tamam/ })).toBeInTheDocument()
+    expect(screen.queryByRole('navigation', { name: 'Ana menü' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('navigation', { name: 'Mobil menü' })).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Oturumu kapat' })).toHaveAttribute('href', '/')
+  })
+
+  it('goes back to the previous question', async () => {
+    const user = userEvent.setup()
+    renderApp('/solve?source=sgs&examIds=sgs-2025-11-22&limit=2')
+    const firstImage = (await screen.findByRole('img', { name: /Soru/ })).getAttribute('src')
+
+    expect(screen.getByRole('button', { name: /Önceki soru/ })).toBeDisabled()
+    await user.click(screen.getByRole('button', { name: 'A' }))
+    await user.click(screen.getByRole('button', { name: /Sonraki soru/ }))
+    await user.click(screen.getByRole('button', { name: /Önceki soru/ }))
+
+    expect(screen.getByRole('img', { name: /Soru/ })).toHaveAttribute('src', firstImage)
+    expect(screen.getByRole('button', { name: 'A' })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it('celebrates at the end of a session', async () => {
+    const user = userEvent.setup()
+    renderApp('/solve?source=sgs&examIds=sgs-2025-11-22&limit=1')
+
+    await user.click(await screen.findByRole('button', { name: 'A' }))
+    await user.click(screen.getByRole('button', { name: /Sonucu gör/ }))
+
+    expect(await screen.findByText(/gün seri/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: '5 soru daha çöz' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Bugünlük yeter' })).toHaveAttribute('href', '/')
+  })
+
   it('counts only the first answer when the answer is changed', async () => {
     localStorage.clear()
     const user = userEvent.setup()
@@ -82,7 +117,7 @@ describe('SMMM question bank', () => {
     const user = userEvent.setup()
     renderApp('/solve?mode=exam&category=Muhasebe&limit=10')
 
-    expect(await screen.findByText('Çalışma modu')).toBeInTheDocument()
+    expect(await screen.findByRole('img', { name: /sorudan [0-9]+ tanesi tamam/ })).toBeInTheDocument()
     expect(screen.queryByText('13:00')).not.toBeInTheDocument()
 
     await user.click((await screen.findAllByRole('button', { name: /^[A-E]\./ }))[0])
@@ -187,7 +222,7 @@ describe.each([
   ['/', /SMMM yolculuğun/i],
   ['/categories', /Konuları parçalara böl/i],
   ['/categories/Muhasebe', /^Muhasebe$/i],
-  ['/solve?mode=practice&category=Muhasebe&limit=1', /Çalışma modu/i],
+  ['/solve?mode=practice&category=Muhasebe&limit=1', /Önceki soru/i],
   ['/wrong', /Yanlış listen temiz/i],
   ['/favorites', /Henüz favorin yok/i],
   ['/statistics', /Rakamlar çalışma ritmini anlatsın/i],

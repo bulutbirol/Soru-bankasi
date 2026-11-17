@@ -72,3 +72,18 @@ describe('question bank data', () => {
     })
   })
 })
+
+describe('pickSessionQuestions', () => {
+  it('prefers questions not answered before', async () => {
+    const { pickSessionQuestions } = await import('./questions')
+    const pool = [{ id: 'a' }, { id: 'b' }, { id: 'c' }]
+    const picked = pickSessionQuestions(pool, { a: {}, b: {} }, 2)
+    expect(picked).toHaveLength(2)
+    expect(picked[0].id).toBe('c')
+  })
+
+  it('returns at least one question', async () => {
+    const { pickSessionQuestions } = await import('./questions')
+    expect(pickSessionQuestions([{ id: 'a' }], {}, 0)).toHaveLength(1)
+  })
+})
