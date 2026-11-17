@@ -13,9 +13,25 @@ function renderApp(route = '/') {
 }
 
 describe('SMMM question bank', () => {
+  it('shows the daily goal, streak and a continue action on the home page', () => {
+    localStorage.clear()
+    renderApp()
+    expect(screen.getByRole('heading', { name: /Bugün 10 soru yeter/i })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /Günlük hedef: 10 sorudan 0/ })).toBeInTheDocument()
+    expect(screen.getByText(/0 gün/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Kaldığın yerden devam/ }).getAttribute('href')).toMatch(/^\/solve\?source=sgs/)
+  })
+
+  it('sends continue to the review queue when reviews are due', () => {
+    localStorage.setItem('smmm-progress-v1', JSON.stringify({ review: { q1: { due: '2000-01-01', step: 0 } } }))
+    renderApp()
+    expect(screen.getByRole('link', { name: /Kaldığın yerden devam/ }).getAttribute('href')).toMatch(/collection=review/)
+    expect(screen.getByRole('link', { name: /Tekrar listesi/ })).toHaveAttribute('href', '/solve?collection=review')
+    localStorage.clear()
+  })
+
   it('shows the category summary on the home page', () => {
     renderApp()
-    expect(screen.getByRole('heading', { name: /SMMM yolculuğun/i })).toBeInTheDocument()
     expect(screen.getByText('Muhasebe')).toBeInTheDocument()
     expect(screen.getByText('Vergi')).toBeInTheDocument()
   })
@@ -133,7 +149,7 @@ describe('SMMM question bank', () => {
   it('summarizes the complete SGS archive from its metadata', () => {
     renderApp('/')
 
-    expect(screen.getByText(/2022 ve 2026 dönemlerindeki 13 sınavı/i)).toBeInTheDocument()
+    expect(screen.getByText(/13 sınav · 1.690 soru/i)).toBeInTheDocument()
   })
 
   it('links to the qualification archive from the home page', () => {
@@ -219,7 +235,7 @@ describe('SMMM question bank', () => {
 })
 
 describe.each([
-  ['/', /SMMM yolculuğun/i],
+  ['/', /Bugün 10 soru yeter/i],
   ['/categories', /Konuları parçalara böl/i],
   ['/categories/Muhasebe', /^Muhasebe$/i],
   ['/solve?mode=practice&category=Muhasebe&limit=1', /Önceki soru/i],
