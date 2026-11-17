@@ -149,7 +149,7 @@ describe('SMMM question bank', () => {
   it('summarizes the complete SGS archive from its metadata', () => {
     renderApp('/')
 
-    expect(screen.getByText(/13 sınav · 1.690 soru/i)).toBeInTheDocument()
+    expect(screen.getByText(/21 sınav · 2.730 soru/i)).toBeInTheDocument()
   })
 
   it('links to the qualification archive from the home page', () => {
@@ -162,7 +162,7 @@ describe('SMMM question bank', () => {
   it('shows the full year range on the SGS archive page', async () => {
     renderApp('/sgs-exams')
 
-    expect(await screen.findByText(/2022-2026 sınavlarından/i)).toBeInTheDocument()
+    expect(await screen.findByText(/2016-2026 sınavlarından/i)).toBeInTheDocument()
   })
 
   it('clears the wrong-answer list after confirmation', async () => {

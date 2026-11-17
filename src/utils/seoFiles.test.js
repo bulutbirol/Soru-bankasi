@@ -14,6 +14,7 @@ describe('deploy SEO files', () => {
       expect(fs.readFileSync(file, 'utf8')).not.toContain('smmmsorubankasi.com')
     }
     expect(sitemap).not.toContain('smmmsorubankasi.com')
+    expect(sitemap).toContain('<loc>https://smmm-soru-bankasi.vercel.app/sgs-exams/sgs-2016-02-27</loc>')
     expect(sitemap).not.toContain('/wrong')
     expect(sitemap).not.toContain('/solve')
     expect(sitemap).not.toContain('/qualification-study')

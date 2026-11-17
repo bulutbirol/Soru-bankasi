@@ -6,7 +6,7 @@ SMMM ve Staja Giriş Sınavı'na hazırlanırken ihtiyaç duyduğun sorulara tek
 
 - Her işaretlemeden sonra doğru cevap ve açıklama
 - 2020-2026 yılları için 700 açıklamalı çalışma sorusu
-- 13 farklı sınavdan 1.690 SGS sorusu
+- 2016-2026 arasındaki 21 sınavdan 2.730 SGS sorusu
 - 120 kaynak belge dağılımına göre 548 özgün SMMM Yeterlilik sorusu
 - Yıla, derse ve konuya göre filtreleme
 - Son 3 Yıl, Son 5 Yıl ve Tüm Yıllar seçenekleri

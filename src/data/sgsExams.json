@@ -103,6 +103,70 @@
       "sourceFile": "12-Mart-2022-staja-giris-sinav-sorulari.pdf",
       "sourceHash": "03aac76c9e18a67e1bde8bfce5e3324838dd7077e9915cfdbd216cefc4377614",
       "questionCount": 130
+    },
+    {
+      "id": "sgs-2021-10-02",
+      "year": 2021,
+      "date": "02 Ekim 2021",
+      "sourceFile": "02-Ekim-2021-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "50329a99c74ab6aa00fe872497d90ddec939366bf4d726498fe9d537680e3a3a",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2021-07-10",
+      "year": 2021,
+      "date": "10 Temmuz 2021",
+      "sourceFile": "10-Temmuz-2021-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "4f19ad900ac7660149d6029df425b4c4f6893c9bcebebfa1bc8e5513222a44dc",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2021-04-03",
+      "year": 2021,
+      "date": "03 Nisan 2021",
+      "sourceFile": "03-Nisan-2021-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "ec6299114f925fe6afae3c42b5fdc87d18fc4e215b714703bccc2c7e3cffd1b8",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2020-10-10",
+      "year": 2020,
+      "date": "10 Ekim 2020",
+      "sourceFile": "10-Ekim-2020-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "99f2c6068a742195c3c9518c0579afc56a7c0442c9cee6bdd95b31c462f6197c",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2020-07-18",
+      "year": 2020,
+      "date": "18 Temmuz 2020",
+      "sourceFile": "18-Temmuz-2020-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "b0351a0d0b8fb605c1fc6600191d2241cd40ebc1483cb27085098b2263a4862a",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2019-10-12",
+      "year": 2019,
+      "date": "12 Ekim 2019",
+      "sourceFile": "12-Kasim-2019-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "c8aab2a2aaf87badaee18d93201838bb926c0db9cb6ba66e70d76e0836e8fc5b",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2016-10-15",
+      "year": 2016,
+      "date": "15 Ekim 2016",
+      "sourceFile": "15ekim2016-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "b0f28181e7674baaa0db8b52ee8689fc62dd399bed4accfc097f74dfb8fa7430",
+      "questionCount": 130
+    },
+    {
+      "id": "sgs-2016-02-27",
+      "year": 2016,
+      "date": "27 Şubat 2016",
+      "sourceFile": "27subat2016-staja-giris-sinav-sorulari.pdf",
+      "sourceHash": "b518621504212b72445a0cb8b39b40c1a45a6e099c2351c39ad7c96ccf141450",
+      "questionCount": 130
     }
   ],
   "duplicates": []
