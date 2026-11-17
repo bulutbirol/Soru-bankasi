@@ -1,0 +1,274 @@
+{
+  "sgs-2026-04-18-001": {
+    "topic": "Türkçe",
+    "steps": [
+      "Soru kökü \"kullanılmamıştır\" diyor; uygun olanları eleyip tek uygunsuz cümleyi arıyoruz.",
+      "A) ocağı sönmek: ailenin dağılması. B) dişine kemane çaldırmak: suyun çok soğuk olması. C) parayı yerinde harcamak. D) sıçan düşse başı yarılır: evde yiyecek hiçbir şey olmaması. Hepsi bağlama uygun.",
+      "E) \"Sermayeyi kediye yüklemek\" iflas etmek demektir. \"Çok satan kitaplar\" ve \"bu sayede\" ise başarıyı anlatıyor; deyim bağlamla çelişiyor."
+    ],
+    "tip": "Olumsuz soru kökünde her şıkka \"uygun mu?\" diye sor, tek \"hayır\"ı bul."
+  },
+  "sgs-2026-04-18-002": {
+    "topic": "Türkçe",
+    "steps": [
+      "Altı çizili sözcüklerin yazımını TDK kurallarına göre tek tek kontrol et.",
+      "A) \"Millî\" sözcüğündeki düzeltme işareti nispet î'sidir, doğrudur. C) Ara yönler bitişik yazılır: kuzeydoğu. D) \"-sever\" ile kurulan sözcükler bitişik yazılır: doğasever. E) \"simit\" ünlüyle başlayan ek alınca yumuşar: simidi.",
+      "B) \"altyapı\" kalıplaşmış birleşik sözcüktür ve TDK'ya göre bitişik yazılır. Metindeki \"alt yapı\" yazımı yanlıştır."
+    ],
+    "tip": "Ara yönler (kuzeydoğu) ve -sever'li sözcükler bitişik yazılır."
+  },
+  "sgs-2026-04-18-003": {
+    "topic": "Türkçe",
+    "steps": [
+      "\"Söylenemez\" soruluyor: her dizede iddia edilen yapıyı ara, bulamadığın dize cevaptır.",
+      "I) \"yeni doğduğunu\": \"yeni\" fiili niteleyen zarftır. II) \"yağmurun hafifliği, toprağın ağırlığı\" belirtili isim tamlamasıdır. III) \"kara yılan\" sıfat tamlaması. V) \"yapan\" sıfat-fiildir.",
+      "IV) \"Seni çağırıyorum parmaklarımdan süt içmeğe\" dizesinde \"bu, şu, o\" gibi bir işaret sıfatı da, ismi niteleyen bir niteleme sıfatı da yoktur. \"Seni\" zamirdir."
+    ],
+    "tip": "İşaret sıfatı ismin önünde gelir (bu kitap); tek başına kullanılırsa zamirdir."
+  },
+  "sgs-2026-04-18-004": {
+    "topic": "Türkçe",
+    "steps": [
+      "Önce yüklemi bul: \"uzak tutun\".",
+      "\"Kimi uzak tutun?\" sorusunun cevabı \"Beni\": belirtili nesne.",
+      "\"Neyden uzak tutun?\" sorusunun cevabı \"ağlamayan bilgelikten, gülmeyen felsefeden ve çocukların önünde eğilmeyen büyüklükten\": -den ekli dolaylı tümleç.",
+      "Sıralama: Nesne, Dolaylı Tümleç, Yüklem."
+    ],
+    "tip": "-e, -de, -den hâl eki almış ve yükleme \"nereye, nerede, nereden, kimden\" sorularıyla bağlanan öğe dolaylı tümleçtir."
+  },
+  "sgs-2026-04-18-005": {
+    "topic": "Türkçe",
+    "steps": [
+      "Metindeki anahtar cümleyi bul: \"Çünkü seni bilmediklerinde, seni sınırlandıramazlar.\"",
+      "Devamında \"başkalarının gözünden bağımsız bir yaşam kurarsın\" deniyor. Yani gizli kalmak, başkalarının yargı ve sınırlarından uzak kalmayı sağlıyor.",
+      "A, B, D ve E metinde geçmeyen, hatta metne ters düşen yorumlardır."
+    ],
+    "tip": "Paragraf sorularında cevabı metindeki bir cümleyle destekleyebilmelisin."
+  },
+  "sgs-2026-04-18-006": {
+    "topic": "Türkçe",
+    "steps": [
+      "Cümlede iki iş var: \"21 gol\" ve \"4 asist\". Tek yüklem \"yaptı\".",
+      "\"4 asist yaptı\" doğru, ama \"21 gol yaptı\" denmez; gol atılır.",
+      "\"21 gol attı, 4 asist yaptı\" olmalıydı. Eksik olan öğe yüklemdir."
+    ],
+    "tip": "Ortak kullanılan yüklemi her öğeye ayrı ayrı bağlayıp dene."
+  },
+  "sgs-2026-04-18-007": {
+    "topic": "Türkçe",
+    "steps": [
+      "Açıklayıcı, kendinden önceki öğeyi virgülle ayrılarak açıklayan ve aynı görevi üstlenen sözdür.",
+      "D) \"İlk gençliğinde\" zaman bildiren zarf tümlecidir. Ardından gelen \"kasabanın en güzel kızını sevdiği zamanlarda\" aynı zamanı açıklıyor.",
+      "Diğer seçeneklerde zarf tümlecini açıklayan ikinci bir zarf tümleci yoktur."
+    ],
+    "tip": "Açıklayıcı öğe, açıkladığı öğeyle aynı soruya cevap verir."
+  },
+  "sgs-2026-04-18-008": {
+    "topic": "Matematik",
+    "steps": [
+      "Logaritma tanımı: log₃(4x + 1) = 2 ise 4x + 1 = 3².",
+      "4x + 1 = 9 → 4x = 8 → x = 2.",
+      "Kontrol: 4·2 + 1 = 9 > 0, logaritma tanımlı."
+    ],
+    "tip": "logₐ(b) = c ⇔ b = aᶜ"
+  },
+  "sgs-2026-04-18-009": {
+    "topic": "Matematik",
+    "steps": [
+      "Parantezleri tek kesre çevir: 5 + 2/3 = 17/3 ve 3 − 1/6 = 17/6.",
+      "Bölme: (17/3) ÷ (17/6) = (17/3) · (6/17) = 2.",
+      "Son işlem: 2 − 3/4 = 8/4 − 3/4 = 5/4."
+    ],
+    "tip": "Kesirle bölme, ikinci kesrin ters çevrilip çarpılmasıdır."
+  },
+  "sgs-2026-04-18-010": {
+    "topic": "Matematik",
+    "steps": [
+      "Noktanın doğruya uzaklığı: |ax₀ + by₀ + c| / √(a² + b²).",
+      "|8k − 15·2 + 4| / √(64 + 225) = |8k − 26| / 17 = 3 → |8k − 26| = 51.",
+      "8k − 26 = 51 → k = 77/8 ya da 8k − 26 = −51 → k = −25/8.",
+      "Toplam: 77/8 − 25/8 = 52/8 = 13/2."
+    ],
+    "tip": "Mutlak değerli denklemde iki durumu da yaz; köklerin toplamı sorulur."
+  },
+  "sgs-2026-04-18-011": {
+    "topic": "Matematik",
+    "steps": [
+      "Onlar basamağı A olan iki basamaklı çift sayılar: A0, A2, A4, A6, A8. Toplam 5 sayı.",
+      "Her birinin onlar katkısı 10A: toplam 5·10A = 50A. Birler basamakları toplamı 0+2+4+6+8 = 20.",
+      "50A + 20 = 370 → 50A = 350 → A = 7."
+    ],
+    "tip": "Basamak değeri: AB = 10A + B. Sayıları tek tek toplamak yerine basamak basamak topla."
+  },
+  "sgs-2026-04-18-012": {
+    "topic": "Matematik",
+    "steps": [
+      "Pay tam karedir: 9x² − 12xy + 4y² = (3x − 2y)².",
+      "Paydayı çarpanlarına ayır: 3x² − 5xy + 2y² = (3x − 2y)(x − y).",
+      "Ortak çarpan (3x − 2y) sadeleşir: (3x − 2y)/(x − y)."
+    ],
+    "tip": "a² − 2ab + b² = (a − b)² kalıbını ilk bakışta tanı."
+  },
+  "sgs-2026-04-18-013": {
+    "topic": "Matematik",
+    "steps": [
+      "Küçük çocuk k, büyük çocuk k + 4, baba B olsun. B + k + (k + 4) = 70 → B = 66 − 2k.",
+      "3 yıl sonra: B + 3 = 3(k + 3) → B = 3k + 6.",
+      "66 − 2k = 3k + 6 → k = 12, B = 42.",
+      "Küçük çocuk doğduğunda baba 42 − 12 = 30 yaşındaydı."
+    ],
+    "tip": "Yaş farkı hiç değişmez: baba ile çocuk arasındaki fark doğumdaki yaşı verir."
+  },
+  "sgs-2026-04-18-014": {
+    "topic": "Matematik",
+    "steps": [
+      "Bileşke içten dışa hesaplanır: önce g(π).",
+      "g(π) = sin(π/2) = 1.",
+      "h(1) = e⁻¹ = 1/e."
+    ],
+    "tip": "(h∘g)(x) = h(g(x)): önce g, sonra h."
+  },
+  "sgs-2026-04-18-015": {
+    "topic": "Matematik",
+    "steps": [
+      "Pay: √n − √(n+1) = −1 / (√n + √(n+1)) olduğundan n büyüdükçe 0'a gider.",
+      "Payda: √n + √(n+1) sonsuza gider.",
+      "Sıfıra giden bir sayı sonsuza bölünürse sonuç 0 olur."
+    ],
+    "tip": "Kök farklarını eşleniğiyle çarparak sadeleştir."
+  },
+  "sgs-2026-04-18-016": {
+    "topic": "Tarih",
+    "steps": [
+      "Hukuk-ı Aile Kararnamesi 1917'de çıkarıldı.",
+      "1909-1918 arası tahtta V. Mehmet Reşat vardı.",
+      "Kararname evlenme ve boşanmayı devlet denetimine alan ilk kapsamlı aile düzenlemesidir."
+    ],
+    "tip": "Tarihi biliyorsan padişahı dönem aralığından bul."
+  },
+  "sgs-2026-04-18-017": {
+    "topic": "Tarih",
+    "steps": [
+      "Şeyh Said İsyanı üzerine 1925'te Takrir-i Sükûn Kanunu çıkarıldı.",
+      "Kanun hükümete olağanüstü yetkiler verdi; iç düzeni sağlamak amaçlandı.",
+      "Milli Korunma 1940, Kabotaj 1926 (ekonomik), Nisab-ı Müzakere 1920 TBMM toplantı yeter sayısıdır."
+    ],
+    "tip": "\"Takrir-i sükûn\" sözcük anlamı da ipucu verir: huzuru sağlamak."
+  },
+  "sgs-2026-04-18-018": {
+    "topic": "Tarih",
+    "steps": [
+      "\"Yanlıştır\" soruluyor.",
+      "Erzurum Kongresi, Şarki Anadolu Müdafaa-i Hukuk Cemiyeti'nin çağrısıyla toplandı; Mustafa Kemal'in çağrısıyla değil. A yanlıştır.",
+      "Bölgesel bir kongredir, Temsil Heyeti seçildi, 23 Temmuz - 7 Ağustos 1919'da toplandı, manda ve himaye reddedildi: B, C, D, E doğru."
+    ],
+    "tip": "Amasya Genelgesi ile çağrılan Sivas Kongresi'dir; Erzurum'u cemiyet topladı."
+  },
+  "sgs-2026-04-18-019": {
+    "topic": "Tarih",
+    "steps": [
+      "Türkiye, Yunanistan'ın önerisi ve davetiyle 18 Temmuz 1932'de Milletler Cemiyeti'ne üye oldu.",
+      "Bu üyelik, Türkiye'nin uluslararası barışa katkı politikasının göstergesidir."
+    ],
+    "tip": "1932: Milletler Cemiyeti, 1934: Balkan Antantı, 1937: Sadabat Paktı."
+  },
+  "sgs-2026-04-18-020": {
+    "topic": "Tarih",
+    "steps": [
+      "Birinci Beş Yıllık Sanayi Planı'nın uygulayıcısı 1933'te kurulan Sümerbank'tır.",
+      "Sümerbank, Karabük Demir-Çelik ve SEKA gibi devlet sanayi kuruluşlarını kurdu.",
+      "İş Bankası 1924, Emlak ve Eytam 1926, Ziraat 1888 kuruldu."
+    ],
+    "tip": "Sanayi = Sümerbank, maden = Etibank (1935)."
+  },
+  "sgs-2026-04-18-021": {
+    "topic": "İngilizce",
+    "steps": [
+      "\"In recent years\" (son yıllarda) ifadesi geçmişte başlayıp bugüne uzanan bir süreci anlatır: Present Perfect ister.",
+      "Cümlenin ikinci yarısı \"so they now understand\" da sonucun bugün hissedildiğini gösterir.",
+      "Doğrusu: have discovered (keşfettiler ve şimdi daha iyi anlıyorlar)."
+    ],
+    "tip": "recently, in recent years, so far, lately → genelde Present Perfect."
+  },
+  "sgs-2026-04-18-022": {
+    "topic": "İngilizce",
+    "steps": [
+      "Özne \"it\" yani ilaç; ilaç kendi kendini test etmez, test edilir: edilgen (passive) yapı gerekir.",
+      "Genel bir kural anlatıldığı için Simple Present Passive: is tested.",
+      "D'deki \"might be tested\" olasılık bildirir; cümle kesin bir prosedürü anlatıyor."
+    ],
+    "tip": "Özne işi yapan değil, işten etkilenen ise passive (be + V3) seç."
+  },
+  "sgs-2026-04-18-023": {
+    "topic": "İngilizce",
+    "steps": [
+      "\"provide something for someone\": birine bir şey sağlamak. İlk boşluk \"for\".",
+      "Hava durumu ile \"in\" kullanılır: in hot weather, in the rain.",
+      "Cevap: for / in."
+    ],
+    "tip": "provide sb with sth ya da provide sth for sb kalıplarını ezberle."
+  },
+  "sgs-2026-04-18-024": {
+    "topic": "İngilizce",
+    "steps": [
+      "Cümle \"but\" ile zıtlık kuruyor: çok şiddetli değildi ama izleyicilere gözlerini kapattıracak kadar ... idi.",
+      "İnsanların gözlerini kapatmasına yol açan sıfat \"frightening\" (korkutucu) olur.",
+      "amusing (eğlenceli), educational, romantic, historical bağlama uymaz."
+    ],
+    "tip": "Boşluktan sonraki sonuç cümlesi (close their eyes) anlamı belirler."
+  },
+  "sgs-2026-04-18-025": {
+    "topic": "İngilizce",
+    "steps": [
+      "Boşluk \"The website\" isimini niteleyen bir sıfat cümleciği başlatıyor.",
+      "Web sitesi bir yer gibi düşünülür ve cümlecikte öğrencilerin öğrendiği \"yer\" anlatılıyor: where.",
+      "who/whom insanlar, when zaman, why sebep içindir."
+    ],
+    "tip": "Cümlecik kendi içinde tam ise (students learn rules) yer için where, zaman için when gelir."
+  },
+  "sgs-2026-04-18-026": {
+    "topic": "İngilizce",
+    "steps": [
+      "Boşluk \"recover\" fiilini niteleyen bir zarf istiyor.",
+      "Yeşil alanların stresten kurtulmayı hızlandırdığı anlatılıyor: recover quickly.",
+      "hardly (neredeyse hiç) anlamı tersine çevirir; secretly, unfortunately, widely bağlama uymaz."
+    ],
+    "tip": "Çalışmanın olumlu bir bulgu sunduğunu fark et; olumsuz zarfları ele."
+  },
+  "sgs-2026-04-18-027": {
+    "topic": "İngilizce",
+    "steps": [
+      "Sınav öncesi iyi uyumanın neyi geliştireceği soruluyor.",
+      "Yeterli dinlenme \"concentration\" (odaklanma) sağlar.",
+      "adventure, description, friendship, equipment bağlamla ilgisiz."
+    ],
+    "tip": "Kelime sorularında önce boşluğun Türkçe karşılığını tahmin et, sonra şıklara bak."
+  },
+  "sgs-2026-04-18-028": {
+    "topic": "İngilizce",
+    "steps": [
+      "\"Since + geçmiş zaman\" (geçen yıl yapıldığından beri) ana cümlede Present Perfect ister.",
+      "A \"have found\" ile hem zaman hem anlam uyumlu: hastane yapıldığından beri hastalar acil bakıma daha kolay ulaşıyor.",
+      "B anlamca ters, C, D ve E zaman uyumu açısından yanlış."
+    ],
+    "tip": "since (-den beri) → ana cümle have/has + V3."
+  },
+  "sgs-2026-04-18-029": {
+    "topic": "İngilizce",
+    "steps": [
+      "Araba kullanırken mesajlaşmanın sonucu soruluyor.",
+      "Mantıklı sonuç: gözlerini tehlikeli bir şekilde yoldan ayırırsın (E).",
+      "A, B ve D gerçeğin tersini söylüyor, C saçma."
+    ],
+    "tip": "Cümle tamamlamada sağduyuya en uygun, mantıklı sonucu seç."
+  },
+  "sgs-2026-04-18-030": {
+    "topic": "İngilizce",
+    "steps": [
+      "\"While\" burada zıtlık bildirir: sanat çoğu zaman sadece eğlence olarak görülse de ...",
+      "Zıtlık için sanatın eğlenceden öte bir faydası söylenmeli: ruh halini iyileştirip stresi azaltabilir (B).",
+      "Diğer şıklar abartılı ya da mantıksız genellemeler."
+    ],
+    "tip": "while / although / though → iki cümle arasında karşıtlık arayın."
+  }
+}
