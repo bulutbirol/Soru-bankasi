@@ -5,14 +5,13 @@ import questions from '../data/questionBank'
 import qualificationData from '../data/qualificationExams.json'
 import sgsExamData from '../data/sgsExams.json'
 import { useProgress } from '../hooks/useProgress'
+import { getAccuracy } from '../storage/progress'
 import { getCategorySummary } from '../utils/questions'
 
 export function HomePage() {
   const { progress } = useProgress()
   const categories = getCategorySummary(questions)
-  const accuracy = progress.totals.answered
-    ? Math.round((progress.totals.correct / progress.totals.answered) * 100)
-    : 0
+  const accuracy = getAccuracy(progress)
   const today = new Date().toISOString().slice(0, 10)
   const sgsYears = sgsExamData.exams.map((exam) => exam.year)
   const firstSgsYear = Math.min(...sgsYears)

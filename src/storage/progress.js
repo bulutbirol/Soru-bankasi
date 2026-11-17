@@ -5,8 +5,10 @@ export function createDefaultProgress() {
     version: 1,
     answeredById: {},
     wrongQuestionIds: [],
+    unknownQuestionIds: [],
     favoriteQuestionIds: [],
     completedQualificationIds: [],
+    review: {},
     totals: { answered: 0, correct: 0, wrong: 0, exams: 0 },
     byCategory: {},
     dailyActivity: {},
@@ -14,13 +16,61 @@ export function createDefaultProgress() {
     settings: {
       theme: 'system',
       questionCount: 10,
+      dailyGoal: 10,
       shuffleOptions: true,
     },
   }
 }
 
+const REVIEW_INTERVALS = [1, 3, 7]
+
 function unique(values) {
   return [...new Set(values)]
+}
+
+export function localDate(now = new Date()) {
+  const pad = (value) => String(value).padStart(2, '0')
+  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
+}
+
+function addDays(now, days) {
+  const next = new Date(now)
+  next.setDate(next.getDate() + days)
+  return localDate(next)
+}
+
+function nextReview(current, result, now) {
+  if (result !== 'correct') return { due: addDays(now, REVIEW_INTERVALS[0]), step: 0 }
+  if (!current) return undefined
+  const step = current.step + 1
+  return step < REVIEW_INTERVALS.length ? { due: addDays(now, REVIEW_INTERVALS[step]), step } : undefined
+}
+
+export function getAccuracy(progress) {
+  const graded = progress.totals.correct + progress.totals.wrong
+  return graded ? Math.round((progress.totals.correct / graded) * 100) : 0
+}
+
+export function getTodayCount(progress, now = new Date()) {
+  return progress.dailyActivity[localDate(now)] || 0
+}
+
+export function getStreak(progress, now = new Date()) {
+  const cursor = new Date(now)
+  if (!progress.dailyActivity[localDate(cursor)]) cursor.setDate(cursor.getDate() - 1)
+  let streak = 0
+  while (progress.dailyActivity[localDate(cursor)]) {
+    streak += 1
+    cursor.setDate(cursor.getDate() - 1)
+  }
+  return streak
+}
+
+export function getDueReviewIds(progress, now = new Date()) {
+  const today = localDate(now)
+  return Object.entries(progress.review)
+    .filter(([, entry]) => entry.due <= today)
+    .map(([id]) => id)
 }
 
 export function normalizeProgress(value) {
@@ -32,6 +82,8 @@ export function normalizeProgress(value) {
     ...value,
     answeredById: value.answeredById || {},
     wrongQuestionIds: unique(value.wrongQuestionIds || []),
+    unknownQuestionIds: unique(value.unknownQuestionIds || []),
+    review: value.review && typeof value.review === 'object' ? value.review : {},
     favoriteQuestionIds: unique(value.favoriteQuestionIds || []),
     completedQualificationIds: unique(value.completedQualificationIds || []),
     totals: { ...defaults.totals, ...(value.totals || {}) },
@@ -55,15 +107,24 @@ export function saveProgress(progress) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeProgress(progress)))
 }
 
-export function recordAnswer(progress, { questionId, correct, category }) {
-  const today = new Date().toISOString().slice(0, 10)
+export function recordAnswer(progress, { questionId, correct, result: givenResult, category, now = new Date() }) {
+  const result = givenResult || (correct ? 'correct' : 'wrong')
+  correct = result === 'correct'
+  const wrong = result === 'wrong'
+  const today = localDate(now)
   const categoryStats = progress.byCategory[category] || { answered: 0, correct: 0 }
-  const wrongQuestionIds = correct
-    ? progress.wrongQuestionIds.filter((id) => id !== questionId)
-    : unique([...progress.wrongQuestionIds, questionId])
+  const without = (ids) => ids.filter((id) => id !== questionId)
+  const wrongQuestionIds = wrong ? unique([...progress.wrongQuestionIds, questionId]) : without(progress.wrongQuestionIds)
+  const unknownQuestionIds = result === 'unknown'
+    ? unique([...progress.unknownQuestionIds, questionId])
+    : without(progress.unknownQuestionIds)
+  const { [questionId]: currentReview, ...otherReviews } = progress.review
+  const review = nextReview(currentReview, result, now)
 
   return normalizeProgress({
     ...progress,
+    unknownQuestionIds,
+    review: review ? { ...otherReviews, [questionId]: review } : otherReviews,
     answeredById: {
       ...progress.answeredById,
       [questionId]: {
@@ -77,9 +138,9 @@ export function recordAnswer(progress, { questionId, correct, category }) {
       ...progress.totals,
       answered: progress.totals.answered + 1,
       correct: progress.totals.correct + (correct ? 1 : 0),
-      wrong: progress.totals.wrong + (correct ? 0 : 1),
+      wrong: progress.totals.wrong + (wrong ? 1 : 0),
     },
-    byCategory: {
+    byCategory: result === 'unknown' ? progress.byCategory : {
       ...progress.byCategory,
       [category]: {
         answered: categoryStats.answered + 1,

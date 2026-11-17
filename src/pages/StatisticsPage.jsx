@@ -1,13 +1,12 @@
 import { BarChart3, CheckCircle2, Target, Trophy } from 'lucide-react'
 import { PageHeader } from '../components/PageHeader'
 import { useProgress } from '../hooks/useProgress'
+import { getAccuracy } from '../storage/progress'
 import { formatDate } from '../utils/format'
 
 export function StatisticsPage() {
   const { progress } = useProgress()
-  const accuracy = progress.totals.answered
-    ? Math.round((progress.totals.correct / progress.totals.answered) * 100)
-    : 0
+  const accuracy = getAccuracy(progress)
   const categoryEntries = Object.entries(progress.byCategory)
   const lastSevenDays = Array.from({ length: 7 }, (_, offset) => {
     const date = new Date()
