@@ -51,6 +51,19 @@ describe('SMMM question bank', () => {
     expect(optionB).toHaveAttribute('aria-pressed', 'true')
   })
 
+  it('counts only the first answer when the answer is changed', async () => {
+    localStorage.clear()
+    const user = userEvent.setup()
+    renderApp('/solve?source=sgs&examIds=sgs-2025-11-22&mode=practice&limit=1')
+
+    await user.click(await screen.findByRole('button', { name: 'A' }))
+    await user.click(screen.getByRole('button', { name: 'B' }))
+    await user.click(screen.getByRole('button', { name: 'C' }))
+
+    const saved = JSON.parse(localStorage.getItem('smmm-progress-v1'))
+    expect(saved.totals.answered).toBe(1)
+  })
+
   it('treats legacy exam links as learning sessions without a timer', async () => {
     const user = userEvent.setup()
     renderApp('/solve?mode=exam&category=Muhasebe&limit=10')

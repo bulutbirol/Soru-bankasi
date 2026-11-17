@@ -34,13 +34,15 @@ export function prepareQuestions(questions, random = Math.random) {
 
 export function calculateResult(questions, answers) {
   const correct = questions.filter((question) => answers[question.id] === question.answer).length
+  const unknown = questions.filter((question) => answers[question.id] === 'unknown').length
   const answered = questions.filter((question) => answers[question.id] !== undefined).length
   const total = questions.length
 
   return {
     total,
     correct,
-    wrong: answered - correct,
+    wrong: answered - correct - unknown,
+    unknown,
     empty: total - answered,
     percentage: total ? Math.round((correct / total) * 100) : 0,
   }

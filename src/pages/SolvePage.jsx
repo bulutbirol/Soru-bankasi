@@ -75,25 +75,20 @@ export function SolvePage() {
     recordedAnswers.current.add(question.id)
     recordAnswer({
       questionId: question.id,
-      correct: optionIndex === question.answer,
+      result: optionIndex === 'unknown' ? 'unknown' : optionIndex === question.answer ? 'correct' : 'wrong',
       category: question.category,
     })
   }, [recordAnswer])
 
-  const handleNext = () => {
-    recordQuestionAnswer(session.currentQuestion, session.currentAnswer)
-    session.next()
-  }
-
-  const handleFinish = () => {
-    recordQuestionAnswer(session.currentQuestion, session.currentAnswer)
-    session.finish()
+  const handleAnswer = (optionIndex) => {
+    recordQuestionAnswer(session.currentQuestion, optionIndex)
+    session.answer(optionIndex)
   }
 
   useEffect(() => {
     if (!session.finished || recordedSession.current || !session.questions.length) return
     session.questions.forEach((question) => {
-      recordQuestionAnswer(question, session.answers[question.id])
+      recordQuestionAnswer(question, session.firstAnswers[question.id])
     })
     recordedSession.current = true
     finishSession({
@@ -101,7 +96,7 @@ export function SolvePage() {
       category: category || (sourceType === 'past_exam' ? 'Çıkmış Sorular' : sourceType === 'sgs' ? 'SGS' : sourceType === 'qualification' ? 'SMMM Yeterlilik' : 'Karma'),
       ...session.result,
     })
-  }, [category, finishSession, mode, recordQuestionAnswer, session.answers, session.finished, session.questions, session.result, sourceType])
+  }, [category, finishSession, mode, recordQuestionAnswer, session.firstAnswers, session.finished, session.questions, session.result, sourceType])
 
   if (!source.length) {
     return (
@@ -160,16 +155,16 @@ export function SolvePage() {
         question={session.currentQuestion}
         selectedAnswer={session.currentAnswer}
         favorite={progress.favoriteQuestionIds.includes(session.currentQuestion.id)}
-        onAnswer={session.answer}
+        onAnswer={handleAnswer}
         onToggleFavorite={() => toggleFavorite(session.currentQuestion.id)}
       />
       <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
-        <button type="button" onClick={handleFinish} className="btn-secondary">
+        <button type="button" onClick={session.finish} className="btn-secondary">
           <CheckCircle2 size={18} /> Testi bitir
         </button>
         <button
           type="button"
-          onClick={handleNext}
+          onClick={session.next}
           disabled={!answered}
           className="btn-primary disabled:cursor-not-allowed disabled:opacity-40"
         >

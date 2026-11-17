@@ -51,6 +51,7 @@ describe('calculateResult', () => {
       total: 3,
       correct: 1,
       wrong: 1,
+      unknown: 0,
       empty: 1,
       percentage: 33,
     })

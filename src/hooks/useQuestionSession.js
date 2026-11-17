@@ -7,6 +7,7 @@ export function useQuestionSession(source, { shuffleOptions = true }) {
   )
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState({})
+  const [firstAnswers, setFirstAnswers] = useState({})
   const [finished, setFinished] = useState(false)
   const currentQuestion = questions[currentIndex]
   const currentAnswer = currentQuestion ? answers[currentQuestion.id] : undefined
@@ -17,6 +18,7 @@ export function useQuestionSession(source, { shuffleOptions = true }) {
     (optionIndex) => {
       if (!currentQuestion || finished) return
       setAnswers((current) => ({ ...current, [currentQuestion.id]: optionIndex }))
+      setFirstAnswers((current) => (currentQuestion.id in current ? current : { ...current, [currentQuestion.id]: optionIndex }))
     },
     [currentQuestion, finished],
   )
@@ -26,7 +28,9 @@ export function useQuestionSession(source, { shuffleOptions = true }) {
     else setCurrentIndex((value) => value + 1)
   }, [currentIndex, finish, questions.length])
 
-  const result = useMemo(() => calculateResult(questions, answers), [answers, questions])
+  const prev = useCallback(() => setCurrentIndex((value) => Math.max(0, value - 1)), [])
+
+  const result = useMemo(() => calculateResult(questions, firstAnswers), [firstAnswers, questions])
 
   return {
     questions,
@@ -34,11 +38,14 @@ export function useQuestionSession(source, { shuffleOptions = true }) {
     currentIndex,
     currentAnswer,
     answers,
+    firstAnswers,
+    canGoBack: currentIndex > 0,
     finished,
     progress: questions.length ? ((currentIndex + 1) / questions.length) * 100 : 0,
     result,
     answer,
     next,
+    prev,
     finish,
   }
 }
