@@ -6,4 +6,4 @@ Disallow: /favorites
 Disallow: /statistics
 Disallow: /settings
 
-Sitemap: https://smmmsorubankasi.com/sitemap.xml
+Sitemap: https://smmm-soru-bankasi.vercel.app/sitemap.xml

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { CategoryCard } from '../components/CategoryCard'
 import questions from '../data/questionBank'
 import qualificationData from '../data/qualificationExams.json'
-import qualificationQuestions from '../data/qualificationQuestions.json'
 import sgsExamData from '../data/sgsExams.json'
 import { useProgress } from '../hooks/useProgress'
 import { getCategorySummary } from '../utils/questions'
@@ -121,7 +120,7 @@ export function HomePage() {
               <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-white/70">Açıklamalı öğrenme alanı</p>
               <h2 className="mt-1 font-display text-2xl font-bold">SMMM Yeterlilik Sınavları</h2>
               <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-white/80">
-                {qualificationDocumentCount} kaynak belgeye göre hazırlanmış {qualificationQuestions.length.toLocaleString('tr-TR')} özgün ve açıklamalı soruyu çöz.
+                {qualificationDocumentCount} kaynak belgeye göre hazırlanmış açıklamalı soruları çöz.
               </p>
             </div>
           </div>

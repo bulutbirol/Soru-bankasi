@@ -1,4 +1,4 @@
-export const SITE_ORIGIN = 'https://smmmsorubankasi.com'
+export const SITE_ORIGIN = 'https://smmm-soru-bankasi.vercel.app'
 export const SITE_NAME = 'SMMM Soru Bankası'
 
 const privateRoutes = ['/solve', '/wrong', '/favorites', '/statistics', '/settings', '/qualification-study']
@@ -72,7 +72,7 @@ export function getSeoConfig(pathname) {
   }
 
   return {
-    title: `${title} | ${SITE_NAME}`,
+    title: title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`,
     description,
     canonical: `${SITE_ORIGIN}${path}`,
     robots: noindex || title === 'Sayfa Bulunamadı' ? 'noindex, nofollow' : 'index, follow',

@@ -112,7 +112,7 @@ describe('SMMM question bank', () => {
     expect(document.title).toMatch(/2026 Çıkmış Soruları/)
     expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      'https://smmmsorubankasi.com/past-exams/2026',
+      'https://smmm-soru-bankasi.vercel.app/past-exams/2026',
     )
     expect(document.querySelector('meta[name="robots"]')).toHaveAttribute(
       'content',
@@ -135,7 +135,7 @@ describe('SMMM question bank', () => {
     expect(document.title).toMatch(/SMMM Yeterlilik Sınavları/)
     expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      'https://smmmsorubankasi.com/qualification-exams',
+      'https://smmm-soru-bankasi.vercel.app/qualification-exams',
     )
     unmount()
 
