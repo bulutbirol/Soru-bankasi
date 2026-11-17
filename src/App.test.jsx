@@ -26,7 +26,7 @@ describe('SMMM question bank', () => {
 
     await user.click((await screen.findAllByRole('button', { name: /^[A-E]\./ }))[0])
 
-    expect(screen.getByText('Cevap açıklaması')).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Nasıl çözülür?' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Testi bitir/i })).toBeInTheDocument()
   })
 
@@ -51,6 +51,20 @@ describe('SMMM question bank', () => {
     expect(optionB).toHaveAttribute('aria-pressed', 'true')
   })
 
+  it('reveals the answer and a solution placeholder on Bilmiyorum', async () => {
+    localStorage.clear()
+    const user = userEvent.setup()
+    renderApp('/solve?source=sgs&examIds=sgs-2025-11-22&mode=practice&limit=1')
+
+    await user.click(await screen.findByRole('button', { name: /Bilmiyorum/ }))
+
+    expect(await screen.findByText(/Bu sorunun çözümü hazırlanıyor/)).toBeInTheDocument()
+    expect(screen.getByText(/Doğru cevap [A-E]./)).toBeInTheDocument()
+    const saved = JSON.parse(localStorage.getItem('smmm-progress-v1'))
+    expect(saved.unknownQuestionIds).toHaveLength(1)
+    expect(saved.totals.wrong).toBe(0)
+  })
+
   it('counts only the first answer when the answer is changed', async () => {
     localStorage.clear()
     const user = userEvent.setup()
@@ -72,7 +86,7 @@ describe('SMMM question bank', () => {
     expect(screen.queryByText('13:00')).not.toBeInTheDocument()
 
     await user.click((await screen.findAllByRole('button', { name: /^[A-E]\./ }))[0])
-    expect(screen.getByText('Cevap açıklaması')).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Nasıl çözülür?' })).toBeInTheDocument()
   })
 
   it('does not advertise a timed exam mode', () => {
