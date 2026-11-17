@@ -11,7 +11,8 @@
     "test:watch": "vitest",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm test && npm run typecheck && npm run build"
+    "check": "npm run lint && npm test && npm run typecheck && npm run build",
+    "build:mobile": "vite build && node -e \"require('fs').rmSync('dist/sgs',{recursive:true,force:true})\" && npx cap sync"
   },
   "dependencies": {
     "@capacitor/core": "^7.0.0",

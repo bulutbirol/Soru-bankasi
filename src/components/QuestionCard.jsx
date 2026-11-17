@@ -1,5 +1,6 @@
 import { Check, CircleHelp, Heart, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { questionImageUrl } from '../utils/assets'
 import { loadExplanation } from '../utils/explanations'
 
 const letters = ['A', 'B', 'C', 'D', 'E']
@@ -105,7 +106,7 @@ export function QuestionCard({
       <div className={imageChoices ? 'p-4 sm:p-5' : 'space-y-3 p-5 sm:p-6'}>
         {question.questionImage && (
           <div className="overflow-hidden rounded-2xl bg-white p-2">
-            <img src={question.questionImage} alt={question.question} className="mx-auto max-h-[60vh] w-full object-contain object-top" />
+            <img src={questionImageUrl(question.questionImage)} alt={question.question} className="mx-auto max-h-[60vh] w-full object-contain object-top" />
           </div>
         )}
         <div

@@ -7,6 +7,7 @@ import qualificationQuestions from '../data/qualificationQuestions.json'
 import questions from '../data/questionBank'
 import sgsExamQuestions from '../data/sgsExamQuestions.json'
 import { useProgress } from '../hooks/useProgress'
+import { questionImageUrl } from '../utils/assets'
 import { getCollectionItems } from '../utils/collections'
 
 export function CollectionPage({ type }) {
@@ -68,7 +69,7 @@ export function CollectionPage({ type }) {
               </p>
               <h2 className="mt-1 font-bold leading-6">{question.question}</h2>
               {question.questionImage && (
-                <img src={question.questionImage} alt="" className="mt-3 max-h-44 rounded-xl bg-white object-contain" />
+                <img src={questionImageUrl(question.questionImage)} alt="" className="mt-3 max-h-44 rounded-xl bg-white object-contain" />
               )}
             </div>
             {!isWrong && (
