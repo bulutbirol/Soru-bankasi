@@ -40,7 +40,7 @@ export function SgsExamPage() {
 
   return (
     <div className="page-enter">
-      <Link to="/sgs-exams" className="mb-5 inline-flex items-center gap-2 text-sm font-bold text-slate-500">
+      <Link to="/sgs-exams" className="mb-5 inline-flex items-center gap-2 text-sm font-bold text-muted">
         <ArrowLeft size={16} /> SGS sınavlarına dön
       </Link>
       <PageHeader
@@ -60,8 +60,8 @@ export function SgsExamPage() {
       />
       <div className="panel mt-5 flex flex-col gap-5 p-6 sm:flex-row sm:items-center">
         <div className="flex-1">
-          <strong className="font-display text-2xl">{filtered.length} soru hazır</strong>
-          <p className="mt-1 text-sm text-slate-500">{category || 'Tüm dersler'} · {topic || 'Tüm konular'}</p>
+          <strong className="text-2xl">{filtered.length} soru hazır</strong>
+          <p className="mt-1 text-sm text-muted">{category || 'Tüm dersler'} · {topic || 'Tüm konular'}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Link to={solveUrl()} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>

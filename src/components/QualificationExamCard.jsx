@@ -1,28 +1,20 @@
-import { ArrowRight, BookMarked, FileText } from 'lucide-react'
+import { BookMarked, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export function QualificationExamCard({ exam }) {
   const availableCount = exam.documents.filter((document) => document.available).length
 
   return (
-    <Link
-      to={`/qualification-exams/${exam.id}`}
-      className="panel group relative overflow-hidden p-5 transition hover:-translate-y-1 hover:border-coral/50"
-    >
-      <div className="absolute -right-8 -top-8 size-28 rounded-full bg-coral/10 transition group-hover:scale-110" />
-      <div className="relative flex items-start justify-between">
-        <span className="grid size-12 place-items-center rounded-2xl bg-coral text-white">
-          <BookMarked size={22} />
-        </span>
-        <ArrowRight className="text-slate-400 transition group-hover:translate-x-1 group-hover:text-coral" size={19} />
-      </div>
-      <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.18em] text-coral">
-        {exam.year} · {exam.period}. dönem
-      </p>
-      <h2 className="mt-1 font-display text-xl font-bold">{exam.label.replace('SMMM Yeterlilik', 'Yeterlilik')}</h2>
-      <p className="mt-3 flex items-center gap-2 text-sm font-semibold text-slate-500">
-        <FileText size={16} /> {availableCount} erişilebilir ders belgesi
-      </p>
+    <Link to={`/qualification-exams/${exam.id}`} className="card-press flex items-center gap-4 p-4">
+      <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-sun text-[#4a3300] shadow-[0_3px_0_rgb(var(--c-sun-deep))]">
+        <BookMarked size={22} strokeWidth={2.6} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-xs font-black text-sun-ink">{exam.year} · {exam.period}. dönem</span>
+        <strong className="block text-lg font-black">{exam.label.replace('SMMM Yeterlilik', 'Yeterlilik')}</strong>
+        <span className="text-xs font-extrabold text-muted">{availableCount} erişilebilir ders belgesi</span>
+      </span>
+      <ChevronRight className="text-muted" size={20} strokeWidth={2.8} />
     </Link>
   )
 }

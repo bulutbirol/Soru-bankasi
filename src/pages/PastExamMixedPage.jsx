@@ -62,7 +62,7 @@ export function PastExamMixedPage() {
               setTopic('')
             }}
             className={`min-h-16 rounded-2xl border px-3 text-sm font-bold transition ${
-              presetKey === key ? 'border-amber bg-amber text-ink' : 'border-ink/10 bg-white/60 dark:border-white/10 dark:bg-white/5'
+              presetKey === key ? 'border-sun bg-sun text-[#4a3300]' : 'border-line bg-surface  '
             }`}
             key={key}
           >
@@ -81,8 +81,8 @@ export function PastExamMixedPage() {
 
       <div className="panel mt-5 flex flex-col gap-5 p-6 sm:flex-row sm:items-center">
         <div className="flex-1">
-          <strong className="font-display text-2xl">{filtered.length} karma soru</strong>
-          <p className="mt-1 text-sm text-slate-500">{preset.years.at(-1)}-{preset.years[0]} · {category || 'Tüm dersler'} · {topic || 'Tüm konular'}</p>
+          <strong className="text-2xl">{filtered.length} karma soru</strong>
+          <p className="mt-1 text-sm text-muted">{preset.years.at(-1)}-{preset.years[0]} · {category || 'Tüm dersler'} · {topic || 'Tüm konular'}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Link to={solveUrl()} className={`btn-primary ${filtered.length ? '' : 'pointer-events-none opacity-40'}`}>

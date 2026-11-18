@@ -42,21 +42,21 @@ export function QualificationMixedPage() {
       <div className="panel grid gap-4 p-5 sm:grid-cols-2">
         <label className="text-sm font-bold">
           Yıl
-          <select value={year} onChange={(event) => setYear(event.target.value)} className="mt-2 w-full rounded-2xl border border-ink/10 bg-transparent px-4 py-3 dark:border-white/10">
+          <select value={year} onChange={(event) => setYear(event.target.value)} className="mt-2 w-full rounded-2xl border border-line bg-transparent px-4 py-3">
             <option value="">Tüm yıllar</option>
             {years.map((item) => <option value={item} key={item}>{item}</option>)}
           </select>
         </label>
         <label className="text-sm font-bold">
           Ders
-          <select value={lesson} onChange={(event) => setLesson(event.target.value)} className="mt-2 w-full rounded-2xl border border-ink/10 bg-transparent px-4 py-3 dark:border-white/10">
+          <select value={lesson} onChange={(event) => setLesson(event.target.value)} className="mt-2 w-full rounded-2xl border border-line bg-transparent px-4 py-3">
             <option value="">Tüm dersler</option>
             {lessons.map((item) => <option value={item} key={item}>{item}</option>)}
           </select>
         </label>
       </div>
       <div className="my-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm font-bold text-slate-500">{filtered.length} belge · {questionCount} soru bulundu</p>
+        <p className="text-sm font-bold text-muted">{filtered.length} belge · {questionCount} soru bulundu</p>
         <Link
           to={`/solve?${solveParams}`}
           className={`btn-primary ${questionCount ? '' : 'pointer-events-none opacity-40'}`}

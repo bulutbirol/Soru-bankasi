@@ -20,21 +20,21 @@ export function PastExamsPage() {
 
       <Link
         to="/past-exams/mixed"
-        className="relative mb-7 flex overflow-hidden rounded-3xl bg-ink p-6 text-white shadow-lift transition hover:-translate-y-1 sm:items-center sm:justify-between sm:p-8"
+        className="relative mb-7 flex overflow-hidden rounded-3xl bg-brand p-6 text-white shadow-[0_6px_0_rgb(var(--c-brand-deep))] transition active:translate-y-1 active:shadow-none sm:items-center sm:justify-between sm:p-8"
       >
         <div className="relative z-10">
-          <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-mint/15 px-3 py-1 text-xs font-extrabold text-mint">
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-extrabold text-white/90">
             <Sparkles size={14} /> KARMA MOD
           </span>
-          <h2 className="font-display text-2xl font-bold sm:text-3xl">Yılları karıştır, sınav refleksini ölç.</h2>
-          <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">Son 3 yıl, son 5 yıl veya tüm yıllar arasından ders ve konu filtreli çalışma oluştur.</p>
+          <h2 className="text-2xl font-black sm:text-3xl">Yılları karıştır, sınav refleksini ölç.</h2>
+          <p className="mt-2 max-w-xl text-sm leading-6 text-white/90">Son 3 yıl, son 5 yıl veya tüm yıllar arasından ders ve konu filtreli çalışma oluştur.</p>
         </div>
-        <Layers3 className="absolute -bottom-8 -right-5 text-amber/20 sm:static sm:text-amber" size={104} />
+        <Layers3 className="absolute -bottom-8 -right-5 text-white/25 sm:static sm:text-white" size={104} />
       </Link>
 
       <div className="mb-4">
-        <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-coral">Yıl seç</p>
-        <h2 className="mt-1 font-display text-2xl font-bold">Tek yıl çalışmaları</h2>
+        <p className="text-sm font-black text-danger">Yıl seç</p>
+        <h2 className="mt-1 text-2xl font-black">Tek yıl çalışmaları</h2>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {PAST_EXAM_YEARS.map((year) => (
@@ -46,11 +46,11 @@ export function PastExamsPage() {
         {Object.entries(PAST_EXAM_PRESETS).map(([key, preset]) => (
           <Link
             to={`/past-exams/mixed?preset=${key}`}
-            className="panel p-5 text-center font-bold transition hover:border-amber/60 hover:bg-amber/10"
+            className="panel p-5 text-center font-bold transition hover:border-sun hover:bg-sun-soft"
             key={key}
           >
             {preset.label}
-            <span className="mt-1 block text-xs font-semibold text-slate-500">{preset.years.length} yıl</span>
+            <span className="mt-1 block text-xs font-semibold text-muted">{preset.years.length} yıl</span>
           </Link>
         ))}
       </div>

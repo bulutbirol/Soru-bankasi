@@ -27,7 +27,7 @@ export function QualificationExamPage() {
 
   return (
     <div className="page-enter">
-      <Link to="/qualification-exams" className="mb-5 inline-flex items-center gap-2 text-sm font-bold text-slate-500">
+      <Link to="/qualification-exams" className="mb-5 inline-flex items-center gap-2 text-sm font-bold text-muted">
         <ArrowLeft size={16} /> Yeterlilik arşivine dön
       </Link>
       <PageHeader

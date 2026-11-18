@@ -1,22 +1,33 @@
 /** @type {import('tailwindcss').Config} */
+const token = (name) => `rgb(var(--c-${name}) / <alpha-value>)`
+
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        ink: '#0e2431',
-        paper: '#f5f0e6',
-        amber: '#f2a93b',
-        mint: '#86d7b4',
-        coral: '#ee735d',
+        bg: token('bg'),
+        surface: token('surface'),
+        line: token('line'),
+        fg: token('fg'),
+        muted: token('muted'),
+        brand: token('brand'),
+        'brand-deep': token('brand-deep'),
+        'brand-soft': token('brand-soft'),
+        'brand-ink': token('brand-ink'),
+        sun: token('sun'),
+        'sun-deep': token('sun-deep'),
+        'sun-soft': token('sun-soft'),
+        'sun-ink': token('sun-ink'),
+        danger: token('danger'),
+        'danger-soft': token('danger-soft'),
+        sky: token('sky'),
+        'sky-deep': token('sky-deep'),
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
-        sans: ['Manrope', 'Segoe UI', 'sans-serif'],
-      },
-      boxShadow: {
-        lift: '0 18px 55px rgba(14, 36, 49, 0.12)',
+        display: ['Nunito', 'Segoe UI', 'sans-serif'],
+        sans: ['Nunito', 'Segoe UI', 'sans-serif'],
       },
     },
   },

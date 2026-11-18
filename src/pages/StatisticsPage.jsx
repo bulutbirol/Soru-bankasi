@@ -35,31 +35,31 @@ export function StatisticsPage() {
           { label: 'Tamamlanan test', value: progress.totals.exams, icon: Trophy },
         ].map((item) => (
           <div className="panel p-5" key={item.label}>
-            <item.icon className="text-coral" size={22} />
+            <item.icon className="text-danger" size={22} />
             <strong className="mt-4 block text-3xl">{item.value}</strong>
-            <span className="text-xs font-bold text-slate-500">{item.label}</span>
+            <span className="text-xs font-bold text-muted">{item.label}</span>
           </div>
         ))}
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-5">
         <section className="panel p-6 lg:col-span-3">
-          <h2 className="font-display text-xl font-bold">Son 7 gün</h2>
+          <h2 className="text-xl font-black">Son 7 gün</h2>
           <div className="mt-7 flex h-48 items-end gap-3">
             {lastSevenDays.map((day) => (
               <div className="flex h-full flex-1 flex-col items-center justify-end gap-2" key={day.key}>
                 <span className="text-xs font-bold">{day.value}</span>
                 <div
-                  className="w-full max-w-12 rounded-t-xl bg-amber transition-all"
+                  className="w-full max-w-12 rounded-t-xl bg-sun transition-all"
                   style={{ height: `${Math.max(6, (day.value / maxActivity) * 130)}px` }}
                 />
-                <span className="text-[11px] font-bold uppercase text-slate-500">{day.label}</span>
+                <span className="text-[11px] font-bold uppercase text-muted">{day.label}</span>
               </div>
             ))}
           </div>
         </section>
         <section className="panel p-6 lg:col-span-2">
-          <h2 className="font-display text-xl font-bold">Ders başarısı</h2>
+          <h2 className="text-xl font-black">Ders başarısı</h2>
           <div className="mt-5 space-y-5">
             {categoryEntries.length ? categoryEntries.map(([name, stats]) => {
               const percent = Math.round((stats.correct / stats.answered) * 100)
@@ -68,27 +68,27 @@ export function StatisticsPage() {
                   <div className="mb-2 flex justify-between text-xs font-bold">
                     <span>{name}</span><span>%{percent}</span>
                   </div>
-                  <div className="h-2 rounded-full bg-ink/10 dark:bg-white/10">
-                    <div className="h-full rounded-full bg-mint" style={{ width: `${percent}%` }} />
+                  <div className="h-2 rounded-full bg-line/60">
+                    <div className="h-full rounded-full bg-brand" style={{ width: `${percent}%` }} />
                   </div>
                 </div>
               )
-            }) : <p className="text-sm leading-6 text-slate-500">Ders bazlı grafikler ilk cevaplarından sonra burada oluşacak.</p>}
+            }) : <p className="text-sm leading-6 text-muted">Ders bazlı grafikler ilk cevaplarından sonra burada oluşacak.</p>}
           </div>
         </section>
       </div>
 
       {progress.recentSessions.length > 0 && (
         <section className="panel mt-5 p-6">
-          <h2 className="font-display text-xl font-bold">Son çalışmalar</h2>
-          <div className="mt-4 divide-y divide-ink/10 dark:divide-white/10">
+          <h2 className="text-xl font-black">Son çalışmalar</h2>
+          <div className="mt-4 divide-y divide-line">
             {progress.recentSessions.slice(0, 5).map((session, index) => (
               <div className="flex items-center justify-between gap-4 py-4" key={`${session.completedAt}-${index}`}>
                 <div>
                   <strong className="block">{session.category}</strong>
-                  <span className="text-xs text-slate-500">{formatDate(session.completedAt)} · Çalışma</span>
+                  <span className="text-xs text-muted">{formatDate(session.completedAt)} · Çalışma</span>
                 </div>
-                <span className="rounded-xl bg-ink px-3 py-2 font-bold text-amber">%{session.percentage}</span>
+                <span className="rounded-xl bg-brand px-3 py-2 font-black text-white">%{session.percentage}</span>
               </div>
             ))}
           </div>

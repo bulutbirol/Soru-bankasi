@@ -16,7 +16,7 @@ export function TopicsPage() {
 
   return (
     <div className="page-enter">
-      <Link to="/categories" className="mb-5 inline-flex items-center gap-2 text-sm font-bold text-slate-500">
+      <Link to="/categories" className="mb-5 inline-flex items-center gap-2 text-sm font-bold text-muted">
         <ArrowLeft size={16} /> Derslere dön
       </Link>
       <PageHeader
@@ -32,12 +32,12 @@ export function TopicsPage() {
       <div className="space-y-3">
         {topics.map((topic, index) => (
           <div className="panel flex flex-col gap-4 p-5 sm:flex-row sm:items-center" key={topic.name}>
-            <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-ink font-display text-lg font-bold text-amber dark:bg-amber dark:text-ink">
+            <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-brand text-lg font-black text-white">
               {String(index + 1).padStart(2, '0')}
             </span>
             <div className="flex-1">
               <h2 className="text-lg font-bold">{topic.name}</h2>
-              <p className="mt-1 text-xs font-semibold text-slate-500">{topic.count} örnek soru</p>
+              <p className="mt-1 text-xs font-semibold text-muted">{topic.count} örnek soru</p>
             </div>
             <Link
               to={`/solve?category=${encodeURIComponent(decodedCategory)}&topic=${encodeURIComponent(topic.name)}`}

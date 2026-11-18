@@ -22,24 +22,24 @@ export function QualificationExamsPage() {
       <div className="mb-7 grid gap-4 md:grid-cols-2">
         <Link
           to="/qualification-exams/mixed"
-          className="relative overflow-hidden rounded-3xl bg-ink p-6 text-white shadow-lift transition hover:-translate-y-1"
+          className="relative overflow-hidden rounded-3xl bg-brand p-6 text-white shadow-[0_6px_0_rgb(var(--c-brand-deep))] transition active:translate-y-1 active:shadow-none"
         >
-          <Layers3 className="text-amber" size={26} />
-          <p className="mt-7 text-xs font-extrabold uppercase tracking-[0.18em] text-mint">Tüm arşiv</p>
-          <h2 className="mt-1 font-display text-2xl font-bold">Karma Yeterlilik çalışması</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">Yıl ve ders seçerek açıklamalı sorulardan kendi çalışma setini oluştur.</p>
+          <Layers3 className="text-white" size={26} />
+          <p className="mt-7 text-sm font-black text-white/90">Tüm arşiv</p>
+          <h2 className="mt-1 text-2xl font-black">Karma Yeterlilik çalışması</h2>
+          <p className="mt-3 text-sm leading-6 text-white/90">Yıl ve ders seçerek açıklamalı sorulardan kendi çalışma setini oluştur.</p>
         </Link>
         <div className="panel p-6">
-          <FileSearch className="text-coral" size={26} />
-          <p className="mt-7 text-xs font-extrabold uppercase tracking-[0.18em] text-coral">Kaynak doğrulama</p>
-          <h2 className="mt-1 font-display text-2xl font-bold">{questionCount} öğrenme sorusu</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-500">Her soruda beş seçenek, doğru cevap ve öğrenmeyi destekleyen kısa açıklama bulunur.</p>
+          <FileSearch className="text-danger" size={26} />
+          <p className="mt-7 text-sm font-black text-danger">Kaynak doğrulama</p>
+          <h2 className="mt-1 text-2xl font-black">{questionCount} öğrenme sorusu</h2>
+          <p className="mt-3 text-sm leading-6 text-muted">Her soruda beş seçenek, doğru cevap ve öğrenmeyi destekleyen kısa açıklama bulunur.</p>
         </div>
       </div>
 
       <div className="mb-4">
-        <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-coral">Dönem seç</p>
-        <h2 className="mt-1 font-display text-2xl font-bold">Yeterlilik sınav dönemleri</h2>
+        <p className="text-sm font-black text-danger">Dönem seç</p>
+        <h2 className="mt-1 text-2xl font-black">Yeterlilik sınav dönemleri</h2>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {exams.map((exam) => <QualificationExamCard exam={exam} key={exam.id} />)}

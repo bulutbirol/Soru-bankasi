@@ -23,7 +23,7 @@ export function QualificationDocumentPage() {
 
   return (
     <div className="page-enter">
-      <Link to={`/qualification-exams/${examId}`} className="mb-5 inline-flex items-center gap-2 text-sm font-bold text-slate-500">
+      <Link to={`/qualification-exams/${examId}`} className="mb-5 inline-flex items-center gap-2 text-sm font-bold text-muted">
         <ArrowLeft size={16} /> {document.year}/{document.period} dönemine dön
       </Link>
       <PageHeader
@@ -33,16 +33,16 @@ export function QualificationDocumentPage() {
       />
 
       <div className="panel overflow-hidden">
-        <div className="bg-ink p-6 text-white sm:p-8">
-          <FileCheck2 className="text-amber" size={32} />
-          <h2 className="mt-5 font-display text-2xl font-bold">Kaynak belge doğrulandı</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+        <div className="bg-brand p-6 text-white sm:p-8">
+          <FileCheck2 className="text-white" size={32} />
+          <h2 className="mt-5 text-2xl font-black">Kaynak belge doğrulandı</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-white/90">
             Bu belge uygulamada yeniden yayımlanmaz. Soruları ve komisyon cevaplarını özgün PDF üzerinden inceleyebilirsin.
           </p>
         </div>
         <div className="p-6 sm:p-8">
-          <div className="mb-5 flex items-start gap-3 rounded-2xl bg-mint/15 p-4 text-sm leading-6">
-            <ShieldCheck className="mt-0.5 shrink-0 text-emerald-600" size={20} />
+          <div className="mb-5 flex items-start gap-3 rounded-2xl bg-brand-soft p-4 text-sm leading-6">
+            <ShieldCheck className="mt-0.5 shrink-0 text-brand-ink" size={20} />
             <p>Kaynak: Aktif Online SMMM Yeterlilik soru ve cevap arşivi.</p>
           </div>
           {document.available ? (
@@ -58,7 +58,7 @@ export function QualificationDocumentPage() {
               </a>
             </div>
           ) : (
-            <p className="font-bold text-coral">Bu kaynak bağlantısı şu anda kullanılamıyor.</p>
+            <p className="font-bold text-danger">Bu kaynak bağlantısı şu anda kullanılamıyor.</p>
           )}
         </div>
       </div>

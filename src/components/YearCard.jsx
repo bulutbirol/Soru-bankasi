@@ -1,24 +1,17 @@
-import { ArrowUpRight, CalendarDays, Layers3 } from 'lucide-react'
+import { CalendarDays, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export function YearCard({ summary }) {
   return (
-    <Link
-      to={`/past-exams/${summary.year}`}
-      className="panel group relative overflow-hidden p-5 transition hover:-translate-y-1 hover:border-amber/60"
-    >
-      <div className="absolute -right-8 -top-8 size-28 rounded-full border-[18px] border-amber/10" />
-      <div className="relative flex items-start justify-between">
-        <span className="grid size-12 place-items-center rounded-2xl bg-ink text-amber dark:bg-amber dark:text-ink">
-          <CalendarDays size={21} />
-        </span>
-        <ArrowUpRight className="text-slate-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-coral" size={20} />
-      </div>
-      <strong className="relative mt-6 block font-display text-3xl">{summary.year}</strong>
-      <div className="relative mt-2 flex items-center gap-2 text-xs font-bold text-slate-500">
-        <Layers3 size={14} />
-        <span>{summary.count} soru · {summary.categoryCount} ders · {summary.periodCount} dönem</span>
-      </div>
+    <Link to={`/past-exams/${summary.year}`} className="card-press flex items-center gap-4 p-4">
+      <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-sky text-white shadow-[0_3px_0_rgb(var(--c-sky-deep))]">
+        <CalendarDays size={22} strokeWidth={2.6} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <strong className="block text-2xl font-black">{summary.year}</strong>
+        <span className="text-xs font-extrabold text-muted">{summary.count} soru · {summary.categoryCount} ders · {summary.periodCount} dönem</span>
+      </span>
+      <ChevronRight className="text-muted" size={20} strokeWidth={2.8} />
     </Link>
   )
 }

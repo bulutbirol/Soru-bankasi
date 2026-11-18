@@ -15,7 +15,6 @@ import { filterPastExamQuestions, parseYears } from '../utils/pastExams'
 import { filterQuestions, pickSessionQuestions } from '../utils/questions'
 import { filterSgsQuestions, parseExamIds } from '../utils/sgsExams'
 
-const MAX_SEGMENTS = 30
 
 function buildSource(params, progress) {
   const category = params.get('category') || ''
@@ -58,12 +57,6 @@ function buildSource(params, progress) {
   return pickSessionQuestions(filtered, collection ? {} : progress.answeredById, limit)
 }
 
-function segmentColor(question, firstAnswer, current) {
-  if (firstAnswer === undefined) return current ? 'bg-amber' : 'bg-ink/10 dark:bg-white/10'
-  if (firstAnswer === 'unknown') return 'bg-amber/60'
-  return firstAnswer === question.answer ? 'bg-mint' : 'bg-coral'
-}
-
 function SessionEnd({ result, progress, moreLink }) {
   const streak = getStreak(progress)
   const today = getTodayCount(progress)
@@ -82,15 +75,15 @@ function SessionEnd({ result, progress, moreLink }) {
 
   return (
     <div className="page-enter mx-auto flex max-w-md flex-col gap-5 py-4 text-center">
-      <span className="mx-auto grid size-24 place-items-center rounded-full border-2 border-amber/50 bg-amber/15 text-amber-700 dark:text-amber">
-        <Flame size={44} />
+      <span className="mx-auto grid size-28 place-items-center rounded-[2rem] bg-sun text-[#4a3300] shadow-[0_6px_0_rgb(var(--c-sun-deep))]">
+        <Flame size={56} fill="currentColor" />
       </span>
       <div>
-        <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-amber-700 dark:text-amber">
-          {today >= goal ? 'Günlük hedef tamam' : 'Oturum tamam'}
+        <p className="text-sm font-black uppercase tracking-wide text-sun-ink">
+          {today >= goal ? 'Günlük hedef tamam!' : 'Oturum tamam!'}
         </p>
-        <h1 className="mt-2 font-display text-3xl font-bold">{streak} gün seri</h1>
-        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+        <h1 className="mt-1 text-4xl font-black">{streak} gün seri</h1>
+        <p className="mt-2 text-sm font-bold leading-6 text-muted">
           {today >= goal
             ? 'Bugünkü hedefini tamamladın. Yarın 10 soru daha.'
             : `Hedefe ${goal - today} soru kaldı. Bir tur daha ister misin?`}
@@ -98,30 +91,30 @@ function SessionEnd({ result, progress, moreLink }) {
       </div>
       <div className="grid grid-cols-3 gap-2">
         {[
-          { label: 'doğru', value: result.correct, color: 'text-emerald-700 dark:text-mint' },
-          { label: 'yanlış', value: result.wrong, color: 'text-coral' },
-          { label: 'öğrenildi', value: result.unknown, color: 'text-amber-700 dark:text-amber' },
+          { label: 'doğru', value: result.correct, color: 'text-brand-ink ' },
+          { label: 'yanlış', value: result.wrong, color: 'text-danger' },
+          { label: 'öğrenildi', value: result.unknown, color: 'text-sun-ink ' },
         ].map((item) => (
           <div className="panel p-4" key={item.label}>
-            <strong className={`block font-display text-2xl ${item.color}`}>{item.value}</strong>
-            <span className="text-xs font-bold text-slate-500">{item.label}</span>
+            <strong className={`block text-3xl font-black ${item.color}`}>{item.value}</strong>
+            <span className="text-xs font-extrabold text-muted">{item.label}</span>
           </div>
         ))}
       </div>
       <div className="panel p-4 text-left">
-        <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Bu hafta</p>
-        <div className="mt-3 grid grid-cols-7 gap-1.5 text-center text-[11px] font-bold text-slate-500">
+        <p className="text-sm font-black text-muted">Bu hafta</p>
+        <div className="mt-3 grid grid-cols-7 gap-1.5 text-center text-[11px] font-bold text-muted">
           {week.map((day) => (
             <div className="flex flex-col items-center gap-1.5" key={day.key}>
-              <span className={`size-8 rounded-xl ${day.done ? (day.today ? 'bg-amber' : 'bg-mint') : 'bg-ink/10 dark:bg-white/10'}`} />
+              <span className={`size-8 rounded-xl ${day.done ? (day.today ? 'bg-sun' : 'bg-brand') : 'bg-line/60 '}`} />
               {day.label}
             </div>
           ))}
         </div>
       </div>
       {reviewCount > 0 && (
-        <Link to="/solve?collection=review" className="panel flex items-center gap-3 p-4 text-left text-sm">
-          <RotateCcw className="text-coral" size={20} />
+        <Link to="/solve?collection=review" className="card-press flex items-center gap-3 p-4 text-left text-sm font-bold">
+          <RotateCcw className="text-danger" size={20} />
           <span><strong>{reviewCount} soru</strong> tekrar listende. Önce onlarla başlayabilirsin.</span>
         </Link>
       )}
@@ -189,29 +182,26 @@ function SolveSession() {
   const answered = session.currentAnswer !== undefined
   const last = session.currentIndex === total - 1
 
+  let combo = 0
+  for (const question of session.questions) {
+    const first = session.firstAnswers[question.id]
+    if (first === undefined) break
+    combo = first === question.answer ? combo + 1 : 0
+  }
+
   return (
-    <div className="page-enter mx-auto flex max-w-xl flex-col gap-4">
+    <div className="page-enter mx-auto flex max-w-xl flex-col gap-4 pb-28">
       <div className="flex items-center gap-3">
-        <Link to="/" aria-label="Oturumu kapat" className="grid size-11 shrink-0 place-items-center rounded-2xl bg-ink/5 text-slate-500 dark:bg-white/10">
-          <X size={20} />
+        <Link to="/" aria-label="Oturumu kapat" className="grid size-11 shrink-0 place-items-center rounded-2xl text-muted">
+          <X size={24} strokeWidth={3} />
         </Link>
-        <div className="flex-1" role="img" aria-label={`${total} sorudan ${done} tanesi tamam`}>
-          {total <= MAX_SEGMENTS ? (
-            <div className="flex gap-1">
-              {session.questions.map((question, index) => (
-                <span
-                  key={question.id}
-                  className={`h-2 flex-1 rounded-full ${segmentColor(question, session.firstAnswers[question.id], index === session.currentIndex)}`}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="h-2 overflow-hidden rounded-full bg-ink/10 dark:bg-white/10">
-              <div className="h-full rounded-full bg-amber transition-all" style={{ width: `${(done / total) * 100}%` }} />
-            </div>
-          )}
+        <div className="h-4 flex-1 overflow-hidden rounded-full bg-line" role="img" aria-label={`${total} sorudan ${done} tanesi tamam`}>
+          <div className="h-full rounded-full bg-brand transition-all duration-500" style={{ width: `${(done / total) * 100}%` }} />
         </div>
-        <span className="text-sm font-extrabold text-slate-500">{session.currentIndex + 1}/{total}</span>
+        <span className="flex items-center gap-1 font-black text-sun-ink" title="Üst üste doğru">
+          <Flame size={18} fill="currentColor" /> {combo}
+        </span>
+        <span className="text-sm font-black text-muted">{session.currentIndex + 1}/{total}</span>
       </div>
       <QuestionCard
         question={session.currentQuestion}
@@ -220,13 +210,15 @@ function SolveSession() {
         onAnswer={handleAnswer}
         onToggleFavorite={() => toggleFavorite(session.currentQuestion.id)}
       />
-      <div className="flex gap-2">
-        <button type="button" onClick={session.prev} disabled={!session.canGoBack} className="btn-secondary flex-1 disabled:cursor-not-allowed disabled:opacity-40">
-          <ChevronLeft size={18} /> Önceki soru
-        </button>
-        <button type="button" onClick={session.next} className={`flex-1 ${answered ? 'btn-primary' : 'btn-secondary'}`}>
-          {last ? 'Sonucu gör' : answered ? 'Sonraki soru' : 'Boş bırak'} <ChevronRight size={18} />
-        </button>
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t-2 border-line bg-bg px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3">
+        <div className="mx-auto flex max-w-xl gap-2">
+          <button type="button" onClick={session.prev} disabled={!session.canGoBack} className="btn-secondary flex-1 disabled:cursor-not-allowed disabled:opacity-40">
+            <ChevronLeft size={18} strokeWidth={3} /> Önceki soru
+          </button>
+          <button type="button" onClick={session.next} className={`flex-[1.4] ${answered ? 'btn-primary' : 'btn-secondary'}`}>
+            {last ? 'Sonucu gör' : answered ? 'Sonraki soru' : 'Boş bırak'} <ChevronRight size={18} strokeWidth={3} />
+          </button>
+        </div>
       </div>
     </div>
   )
